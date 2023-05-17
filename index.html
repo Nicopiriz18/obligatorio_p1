@@ -1,12 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tus reclamos</title>
 </head>
 <body>
-    <h1>Sape</h1>
+    <header>
+        <nav>
+            <img src="imagenes/logo.jpg" alt="logo de tus reclamos">
+            <a href="">Principal</a>
+            <a href="">Ver Reclamos</a>
+            <a href="">Estadisticas</a>
+            <a href="">Agregar Empresa</a>
+            <input type="text" required>
+            <img src="imagenes/lupa.jpg" alt="Buscar">
+        </nav>
+    </header>
+    <section>
+        <article>
+            <h3>Sitio para la gestión de reclamos</h3>
+            <p><b>Este sitio permite ingresar reclamos o quejas y realizar diversas consultas.</b></p>
+            <p>Sitio desarrollado en el curso de Programación 1 - 1er semestre 2023 - Universidad ORT Uruguay por:</p>
+            <!-- falta poner que sea caption o que este a la derecha -->
+            <img src="imagenes/manuel.jpg" alt="foto de manuel">
+            <p>Manuel Stapff - 303636</p>
+            <img src="imagenes/nicolas.jpg" alt="foto de nicolas">
+            <p>Nicolas Piriz un re gil</p>
+            <button id="idBotonReclamo">Agrega tu reclamo aquí</button>
+        </article>
+        <article>
+            <h2>Agregar Reclamo</h2>
+            <label for="idNombre">Nombre</label>
+            <input type="text" name="nombre" id="idNombre" placeholder="Tu nombre...">
+            <label for="idEmpresa">Empresa</label>
+            <select name="empresa" id="idEmpresa">
+                <option value="todoViajes">TodoViajes S.A.</option>
+                <option value="alfa">Alfa</option>
+            </select>
+            <label for="idReclamo">Reclamo</label>
+            <input type="text" name="reclamo" id="idReclamo" placeholder="El título es...">
+            <textarea name="reclamo" id="idDescripcion" cols="30" rows="10" placeholder="y tu reclamo es..."></textarea>
+        </article>
+    </section>
 </body>
 </html>
