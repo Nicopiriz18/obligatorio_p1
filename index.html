@@ -8,15 +8,15 @@
   <body>
     <header>
       <nav>
-        <ul>
-          <li><img src="imagenes/logo.jpg" alt="logo de tus reclamos" /></li>
-          <li><a href="">Principal</a></li>
-          <li><a href="">Ver Reclamos</a></li>
-          <li><a href="">Estadisticas</a></li>
-          <li><a href="">Agregar Empresa</a></li>
+        <ul id="idUlNav">
+          <li><img src="imagenes/logo.jpg" alt="logo de tus reclamos" id="idLogo"/></li>
+          <li><a href="#idSection1">Principal</a></li>
+          <li><a href="#idSection2">Ver Reclamos</a></li>
+          <li><a href="#idSection3">Estadisticas</a></li>
+          <li><a href="#idSection4">Agregar Empresa</a></li>
           <li>
             <input type="text" required />
-            <button><img src="imagenes/lupa.jpg" alt="Buscar" /></button>
+            <button><img src="imagenes/lupa.jpg" alt="Buscar" id="idLupa"/></button>
           </li>
         </ul>
       </nav>
@@ -54,7 +54,7 @@
             <option value="todoViajes">TodoViajes S.A.</option>
             <option value="alfa">Alfa</option>
           </select>
-          <br />
+          <br>
           <label for="idReclamo">Reclamo</label>
           <input type="text" name="reclamo" id="idReclamo" placeholder="El título es..."/>
           <br>

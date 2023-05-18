@@ -4,3 +4,33 @@ body{
 #idArticle1_1{
 	background-color: #ff9f79;
 }
+#idArticle1_2{
+	background-color: #c39c51;
+}
+#idSection2{
+	background-color: #c07651;
+}
+#idSection3{
+	background-color: #c39c51;
+}
+#idSection4{
+	background-color: #99f997;
+}
+li{
+	display: inline;
+}
+#idLupa{
+	width:20px;
+	height:20px;
+}
+#idLogo{
+	width:130px;
+	height:40px;
+}
+nav li{
+	margin-left:10px;
+	margin-right10px;
+}
+a{
+	color:#509f25;
+}
