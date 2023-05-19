@@ -32,5 +32,13 @@ nav li{
 	margin-right10px;
 }
 a{
-	color:#509f25;
+	color:#3c6f0b;
+}
+#idImgManuel{
+	width:40px;
+	height:40px;
+}
+#idImgNicolas{
+	width:40px;
+	height:40px;
 }
