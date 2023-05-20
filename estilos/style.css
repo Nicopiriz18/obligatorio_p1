@@ -42,3 +42,20 @@ a{
 	width:40px;
 	height:40px;
 }
+.cont{
+	display:flex;
+	align-items: center;
+}
+.nombre{
+	margin-left:10px;
+}
+#idBotonReclamo{
+	margin-bottom:10px;
+	border-radius:19px;
+	padding:15px 20px 15px 20px;
+	font-size:23px;
+	background-image:linear-gradient(to bottom, #aec252, #c17651)
+}
+
+
+
