@@ -54,7 +54,11 @@ a{
 	border-radius:19px;
 	padding:15px 20px 15px 20px;
 	font-size:23px;
-	background-image:linear-gradient(to bottom, #aec252, #c17651)
+	background-image:linear-gradient(to bottom, #aec252, #c17651);
+	text-align:center;
+}
+#idDivBoton{
+	margin-left:33%;
 }
 
 
