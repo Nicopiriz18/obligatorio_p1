@@ -23,11 +23,11 @@
     </header>
     <section id="idSection1">
       <article id="idArticle1_1">
-        <h3>Sitio para la gestión de reclamos</h3>
-        <h4>
+        <h2>Sitio para la gestión de reclamos</h2>
+        <h3>
           Este sitio permite ingresar reclamos o quejas y realizar diversas
           consultas.
-        </h4>
+        </h3>
         <p>
           Sitio desarrollado en el curso de Programación 1 - 1er semestre 2023 -
           Universidad ORT Uruguay por:
@@ -47,7 +47,7 @@
       </article>
       <article id="idArticle1_2">
         <h2>Agregar Reclamo</h2>
-        <form>
+        <form id="idNuevoForm">
           <label for="idTitulo">Nombre</label>
           <input type="text" name="nombre" id="idTitulo" placeholder="Tu nombre..."/>
           <br/>
@@ -66,43 +66,48 @@
         </form>
       </article>
     </section>
-    <section id="idSection2">
+    <section id="idSection2">	
       <h2>Reclamos ingresados (los mas recientes primero)</h2>
       <article>
         <h3>Reclamo No.2</h3>
-        <p>Anónimo: ¡Perdí la valija!</p>
-        <p>Empresa: TodoViajes SA</p>
+        <div class="reclamo">
+        <p>Anónimo: <span class="comentUsuario">¡Perdí la valija!</span></p>
+        <p>Empresa: <span class="nombreEmpresa">TodoViajes SA</span></p>
         <p>Viajé por su empresa y la valija no llegó.</p>
         <button id="idContador1">¡A mi también me pasó!</button>
         <label for="idContador1">Contador: 3</label>
+    </div>
       </article>
-      <article id="idArticle2_1">
+      <article>
         <h3>Reclamo No.1</h3>
-        <p>Luis Pérez: Pasaje muy caro</p>
-        <p>Empresa: TodoViajes SA</p>
-        <p>
-          El pasaje a BsAs está muy caro, compré con otras compañías y el precio
-          de ustedes es más del doble. Además las otras empresas ofrecen
-          catering
-        </p>
-        <button id="idContador2">¡A mi también me pasó!</button>
-        <label for="idContador2">Contador: 1</label>
+        <div class="reclamo">
+			<p>Luis Pérez: <span class="comentUsuario">Pasaje muy caro</span></p>
+			<p>Empresa: <span class="nombreEmpresa">TodoViajes SA</span></p>
+			<p>
+				El pasaje a BsAs está muy caro, compré con otras compañías y el precio
+				de ustedes es más del doble. Además las otras empresas ofrecen
+				catering
+			</p>
+			<button id="idContador2">¡A mi también me pasó!</button>
+			<label for="idContador2">Contador: 1</label>
+		</div>
       </article>
     </section>
     <section id="idSection3">
       <h2>Estadísticas</h2>
       <article id="idArticle3_1">
         <h3>Empresas seleccionadas</h3>
-        <button>A</button>
-        <button>T</button>
-        <button>*</button>
+        <div id="idEstadisticas">
+			<button>A</button>
+			<button>T</button>
+			<button>*</button>
         <br>
-        <input type="radio" id="idCreciente" name="Filtro" checked />
-        <label for="idCreciente">Orden nombre creciente</label>
-        <input type="radio" id="idDecreciente" name="Filtro" />
-        <label for="idDecreciente">Orden nombre decreciente</label>
+			<input type="radio" id="idCreciente" name="Filtro" checked />
+			<label for="idCreciente">Orden nombre creciente</label>
+			<input type="radio" id="idDecreciente" name="Filtro" />
+			<label for="idDecreciente">Orden nombre decreciente</label>
 		<br>
-        <table>
+        <table id="idTablaEstadisticas">
           <caption>
             Empresas que empiezan con T
           </caption>
@@ -123,6 +128,7 @@
             </tr>
           </tbody>
         </table>
+        </div>
       </article>
       <article id="idArticle3_2">
         <h3>Información General</h3>
