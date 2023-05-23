@@ -49,18 +49,20 @@
         <h2>Agregar Reclamo</h2>
         <form id="idNuevoForm">
           <label for="idTitulo">Nombre</label>
-          <input type="text" name="nombre" id="idTitulo" placeholder="Tu nombre..."/>
+          <input id="idNombre" type="text" name="nombre" id="idTitulo" placeholder="Tu nombre..."/>
 		  <br>
           <label for="idEmpresa">Empresa</label>
-          <select name="empresa" id="idEmpresa">
+          <select class="campo"name="empresa" id="idEmpresa">
             <option value="todoViajes">TodoViajes S.A.</option>
             <option value="alfa">Alfa</option>
           </select>
 		  <br>
           <label for="idReclamo">Reclamo</label>
-          <input type="text" name="reclamo" id="idReclamo" placeholder="El título es..."/>
-          <textarea name="reclamo" id="idDescripcion" cols="30" rows="5" placeholder="y tu reclamo es..."></textarea>
-          <button>Agregar</button>
+          <input class="campo"type="text" name="reclamo" id="idReclamo" placeholder="El título es..."/>
+		  <br>
+          <textarea rows="5" cols="60" name="reclamo" id="idDescripcion" cols="30" rows="5" placeholder="y tu reclamo es..."></textarea>
+		  <br>
+          <button id="idBotonAgregar">Agregar</button>
         </form>
       </article>
     </section>
@@ -164,7 +166,8 @@
           <select name="rubro" id="idRubro">
             <option value="sindatos" selected>Sin datos</option>
           </select>
-          <button>Agregar</button>
+		  <br>
+          <button id="idBotonEmpresa">Agregar</button>
         </form>
       </article>
     </section>

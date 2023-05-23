@@ -23,9 +23,6 @@ body{
 #idSection4{
 	background-color: #99f997;
 }
-li{
-	display: inline;
-}
 #idLupa{
 	width:20px;
 	height:20px;
@@ -37,6 +34,7 @@ li{
 nav li{
 	margin-left:10px;
 	margin-right:10px;
+	display: inline;
 }
 a{
 	color:#3c6f0b;
@@ -75,7 +73,6 @@ a{
 .comentUsuario{
 	background-color: #ff9f79;
 }
-
 .nombreEmpresa{
 	background-color: #33cb31;
 }
@@ -94,4 +91,30 @@ a{
 }
 #idArticle3_1{
 	float:center;
+}
+#idDescripcion{
+	margin-left:75px;
+}
+#idBotonAgregar{
+	margin-left:75px;
+}
+#idNombre{
+	margin-left:10px;
+}
+#idEmpresa{
+	margin-left: 2px;
+	width:183px;
+}
+#idReclamo{
+	margin-left:3px;
+}
+#idBotonEmpresa{
+	margin-left:75px;
+}
+#idRubro{
+	margin-left:25px;
+	width:184px;
+}
+#idNombre{
+	margin-left:11px;
 }
