@@ -50,18 +50,16 @@
         <form id="idNuevoForm">
           <label for="idTitulo">Nombre</label>
           <input type="text" name="nombre" id="idTitulo" placeholder="Tu nombre..."/>
-          <br/>
+		  <br>
           <label for="idEmpresa">Empresa</label>
           <select name="empresa" id="idEmpresa">
             <option value="todoViajes">TodoViajes S.A.</option>
             <option value="alfa">Alfa</option>
           </select>
-          <br>
+		  <br>
           <label for="idReclamo">Reclamo</label>
           <input type="text" name="reclamo" id="idReclamo" placeholder="El título es..."/>
-          <br>
           <textarea name="reclamo" id="idDescripcion" cols="30" rows="5" placeholder="y tu reclamo es..."></textarea>
-          <br>
           <button>Agregar</button>
         </form>
       </article>
@@ -71,25 +69,29 @@
       <article>
         <h3>Reclamo No.2</h3>
         <div class="reclamo">
-        <p>Anónimo: <span class="comentUsuario">¡Perdí la valija!</span></p>
-        <p>Empresa: <span class="nombreEmpresa">TodoViajes SA</span></p>
-        <p>Viajé por su empresa y la valija no llegó.</p>
-        <button id="idContador1">¡A mi también me pasó!</button>
-        <label for="idContador1">Contador: 3</label>
-    </div>
+			<div class="contenidoReclamo">
+				<p>Anónimo: <span class="comentUsuario">¡Perdí la valija!</span></p>
+				<p>Empresa: <span class="nombreEmpresa">TodoViajes SA</span></p>
+				<p>Viajé por su empresa y la valija no llegó.</p>
+				<button id="idContador1">¡A mi también me pasó!</button>
+				<label for="idContador1">Contador: 3</label>
+			</div>
+		</div>
       </article>
       <article>
         <h3>Reclamo No.1</h3>
         <div class="reclamo">
-			<p>Luis Pérez: <span class="comentUsuario">Pasaje muy caro</span></p>
-			<p>Empresa: <span class="nombreEmpresa">TodoViajes SA</span></p>
-			<p>
-				El pasaje a BsAs está muy caro, compré con otras compañías y el precio
-				de ustedes es más del doble. Además las otras empresas ofrecen
-				catering
-			</p>
-			<button id="idContador2">¡A mi también me pasó!</button>
-			<label for="idContador2">Contador: 1</label>
+			<div class="contenidoReclamo">
+				<p>Luis Pérez: <span class="comentUsuario">Pasaje muy caro</span></p>
+				<p>Empresa: <span class="nombreEmpresa">TodoViajes SA</span></p>
+				<p>
+					El pasaje a BsAs está muy caro, compré con otras compañías y el precio
+					de ustedes es más del doble. Además las otras empresas ofrecen
+					catering
+				</p>
+				<button id="idContador2">¡A mi también me pasó!</button>
+				<label for="idContador2">Contador: 1</label>
+			</div>
 		</div>
       </article>
     </section>
