@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <title>Tus reclamos</title>
 	<link rel="stylesheet" href="estilos/style.css">
   </head>
@@ -9,14 +9,14 @@
     <header>
       <nav>
         <ul id="idUlNav">
-          <li><img src="imagenes/logo.jpg" alt="logo de tus reclamos" id="idLogo"/></li>
+          <li><img src="imagenes/logo.jpg" alt="logo de tus reclamos" id="idLogo"></li>
           <li><a href="#idSection1">Principal</a></li>
           <li><a href="#idSection2">Ver Reclamos</a></li>
           <li><a href="#idSection3">Estadisticas</a></li>
           <li><a href="#idSection4">Agregar Empresa</a></li>
           <li>
-            <input type="text" required />
-            <button><img src="imagenes/lupa.jpg" alt="Buscar" id="idLupa"/></button>
+            <input type="text">
+            <button><img src="imagenes/lupa.jpg" alt="Buscar" id="idLupa"></button>
           </li>
         </ul>
       </nav>
@@ -34,35 +34,33 @@
         </p>
         <!-- falta poner que sea caption o que este a la derecha -->
 		<div class="cont">
-			<a href="imagenes/manuel.jpg"><img src="imagenes/manuel.jpg" alt="foto de manuel" id="idImgManuel"/></a>
+			<a href="imagenes/manuel.jpg"><img src="imagenes/manuel.jpg" alt="foto de manuel" id="idImgManuel" class="imgEtudiantes"></a>
 			<p class="nombre">Manuel Stapff - 303636</p>
 		</div>
 		<div class="cont">
-			<a href="imagenes/nicolas.jpg"><img src="imagenes/nicolas.jpg" alt="foto de nicolas" id="idImgNicolas"/></a>
+			<a href="imagenes/nicolas.jpg"><img src="imagenes/nicolas.jpg" alt="foto de nicolas" id="idImgNicolas" class="imgEtudiantes"></a>
 			<p class="nombre">Nicolás Píriz - 310896</p>
 		</div>
-		<div id="idDivBoton">
 			<button id="idBotonReclamo">Agrega tu reclamo aquí</button>
-		</div>
       </article>
       <article id="idArticle1_2">
         <h2>Agregar Reclamo</h2>
         <form id="idNuevoForm">
-          <label for="idTitulo">Nombre</label>
-          <input id="idNombre" type="text" name="nombre" id="idTitulo" placeholder="Tu nombre..."/>
+          <label for="idNombreUsuario">Nombre</label>
+          <input id="idNombreUsuario" type="text" name="nombre" placeholder="Tu nombre..." required>
 		  <br>
           <label for="idEmpresa">Empresa</label>
-          <select class="campo"name="empresa" id="idEmpresa">
+          <select name="empresa" id="idEmpresa">
             <option value="todoViajes">TodoViajes S.A.</option>
             <option value="alfa">Alfa</option>
           </select>
 		  <br>
           <label for="idReclamo">Reclamo</label>
-          <input class="campo"type="text" name="reclamo" id="idReclamo" placeholder="El título es..."/>
+          <input class="campo" type="text" name="reclamo" id="idReclamo" placeholder="El título es..." required>
 		  <br>
-          <textarea rows="5" cols="60" name="reclamo" id="idDescripcion" cols="30" rows="5" placeholder="y tu reclamo es..."></textarea>
+          <textarea rows="5" cols="45" name="reclamo" id="idDescripcion" placeholder="y tu reclamo es..." required></textarea>
 		  <br>
-          <button id="idBotonAgregar">Agregar</button>
+          <input type="submit" value="Agregar" id="idBotonAgregar">
         </form>
       </article>
     </section>
@@ -106,9 +104,9 @@
 			<button>T</button>
 			<button>*</button>
         <br>
-			<input type="radio" id="idCreciente" name="Filtro" checked />
+			<input type="radio" id="idCreciente" name="Filtro" checked>
 			<label for="idCreciente">Orden nombre creciente</label>
-			<input type="radio" id="idDecreciente" name="Filtro" />
+			<input type="radio" id="idDecreciente" name="Filtro">
 			<label for="idDecreciente">Orden nombre decreciente</label>
 		<br>
         <table id="idTablaEstadisticas">
@@ -156,18 +154,18 @@
       <article id="idArticle4_1">
         <h3>Datos:</h3>
         <form>
-          <label for="idNombre">Nombre</label>
-          <input type="text" name="nombre" id="idNombre" />
-          <br/>
+          <label for="idNombreEmpresa">Nombre</label>
+          <input type="text" name="nombre" id="idNombreEmpresa" required>
+          <br>
           <label for="idDireccion">Dirección</label>
-          <input type="text" name="direccion" id="idDireccion" />
-          <br/>
+          <input type="text" name="direccion" id="idDireccion" required>
+          <br>
           <label for="idRubro">Rubro</label>
           <select name="rubro" id="idRubro">
             <option value="sindatos" selected>Sin datos</option>
           </select>
 		  <br>
-          <button id="idBotonEmpresa">Agregar</button>
+          <input type="submit" value="Agregar" id="idBotonEmpresa"> 
         </form>
       </article>
     </section>

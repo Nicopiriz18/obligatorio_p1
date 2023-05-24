@@ -39,13 +39,12 @@ nav li{
 a{
 	color:#3c6f0b;
 }
-#idImgManuel{
-	width:40px;
-	height:40px;
-}
-#idImgNicolas{
-	width:40px;
-	height:40px;
+.imgEtudiantes{
+	width:33px;
+	height:33px;
+	border:1px solid #edc79d;
+	padding: 5px 5px 5px 5px;
+	border-radius:5px;
 }
 .cont{
 	display:flex;
@@ -98,8 +97,11 @@ a{
 #idBotonAgregar{
 	margin-left:75px;
 }
-#idNombre{
+#idNombreUsuario{
 	margin-left:10px;
+}
+#idNombreEmpresa{
+	margin-left:11px;
 }
 #idEmpresa{
 	margin-left: 2px;
