@@ -4,20 +4,20 @@
   <head>
     <meta charset="UTF-8">
     <title>Tus reclamos</title>
-	<link rel="stylesheet" href="estilos/style.css">
+	<link rel="stylesheet" href="css/estilos.css">
   </head>
   <body>
     <header>
       <nav>
         <ul id="idUlNav">
-          <li><img src="imagenes/logo.jpg" alt="logo de tus reclamos" id="idLogo"></li>
+          <li><img src="img/logo.jpg" alt="logo de tus reclamos" id="idLogo"></li>
           <li><a href="#idSection1">Principal</a></li>
           <li><a href="#idSection2">Ver Reclamos</a></li>
           <li><a href="#idSection3">Estadisticas</a></li>
           <li><a href="#idSection4">Agregar Empresa</a></li>
           <li>
-            <input type="text">
-            <button><img src="imagenes/lupa.jpg" alt="Buscar" id="idLupa"></button>
+            <input id="idBuscar" type="text" maxlength="30">
+            <button><img src="img/lupa.jpg" alt="Buscar" id="idLupa"></button>
           </li>
         </ul>
       </nav>
@@ -34,20 +34,15 @@
           Universidad ORT Uruguay por:
         </p>
         <!-- falta poner que sea caption o que este a la derecha -->
-		<div class="cont">
-			<p class="nombre" id="idPManuel"><a href="imagenes/manuel.jpg"><img src="imagenes/manuel.jpg" alt="foto de manuel" id="idImgManuel" class="imgEtudiantes"></a>Manuel Stapff - 303636</p>
-			
-		</div>
-		<div class="cont">
-			<p class="nombre" id="idPNcolas"><a href="imagenes/nicolas.jpg"><img src="imagenes/nicolas.jpg" alt="foto de nicolas" id="idImgNicolas" class="imgEtudiantes"></a>Nicolás Píriz - 310896</p>
-		</div>
+			<p class="nombre" id="idPManuel"><a href="img/manuel.jpg"><img src="img/manuel.jpg" alt="foto de manuel" id="idImgManuel" class="imgEtudiantes"></a>Manuel Stapff - 303636</p>
+			<p class="nombre" id="idPNcolas"><a href="img/nicolas.jpg"><img src="img/nicolas.jpg" alt="foto de nicolas" id="idImgNicolas" class="imgEtudiantes"></a>Nicolás Píriz - 310896</p>
 			<button id="idBotonReclamo">Agrega tu reclamo aquí</button>
       </article>
       <article id="idArticle1_2">
         <h2>Agregar Reclamo</h2>
         <form id="idNuevoForm">
           <label for="idNombreUsuario" id="idLabelUsuario">Nombre</label>
-          <input id="idNombreUsuario" type="text" name="nombre" placeholder="Tu nombre..." required>
+          <input id="idNombreUsuario" type="text" name="nombre" maxlength="30" placeholder="Tu nombre..." required>
 		  <br>
           <label for="idEmpresa" id="idLabelEmpresa">Empresa</label>
           <select name="empresa" id="idEmpresa">
@@ -56,9 +51,9 @@
           </select>
 		  <br>
           <label for="idReclamo" id="idLabelReclamo">Reclamo</label>
-          <input class="campo" type="text" name="reclamo" id="idReclamo" placeholder="El título es..." required>
+          <input type="text" maxlength="30" name="reclamo" id="idReclamo" placeholder="El título es..." required>
 		  <br>
-          <textarea rows="5" cols="45" name="reclamo" id="idDescripcion" placeholder="y tu reclamo es..." required></textarea>
+          <textarea rows="5" cols="45" name="reclamo" id="idDescripcion" placeholder="Y tu reclamo es..." required></textarea>
 		  <br>
           <input type="submit" value="Agregar" id="idBotonAgregar">
         </form>
@@ -155,10 +150,10 @@
         <h3>Datos:</h3>
         <form>
           <label for="idNombreEmpresa" id="idLabelNombreEmpresa">Nombre</label>
-          <input type="text" name="nombre" id="idNombreEmpresa" required>
+          <input type="text" maxlength="30" name="nombre" id="idNombreEmpresa" required>
           <br>
           <label for="idDireccion" id="idLabelDireccion">Dirección</label>
-          <input type="text" name="direccion" id="idDireccion" required>
+          <input type="text" maxlength="30" name="direccion" id="idDireccion" required>
           <br>
           <label for="idRubro" id="idLabelRubro">Rubro</label>
           <select name="rubro" id="idRubro">

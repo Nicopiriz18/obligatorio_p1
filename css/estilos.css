@@ -1,4 +1,4 @@
-/*Material elaborado por: Nicolás Píriz(310896) y Manuel Stapff(303636)-->*/
+/*Material elaborado por: Nicolás Píriz(310896) y Manuel Stapff(303636)*/
 *{
 	font-family:arial;
 }
@@ -46,10 +46,6 @@ nav a{
 	border:1px solid #edc79d;
 	padding: 5px 5px 5px 5px;
 	border-radius:5px;
-}
-.cont{
-	display:flex;
-	align-items: center;
 }
 #idBotonReclamo{
 	display: block;
