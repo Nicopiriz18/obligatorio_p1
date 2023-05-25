@@ -37,7 +37,7 @@ nav li{
 	margin-right:10px;
 	display: inline;
 }
-a{
+nav a{
 	color:#3c6f0b;
 }
 .imgEtudiantes{
@@ -50,9 +50,6 @@ a{
 .cont{
 	display:flex;
 	align-items: center;
-}
-.nombre{
-	margin-left:10px;
 }
 #idBotonReclamo{
 	display: block;
@@ -134,4 +131,7 @@ a{
 #idLabelDireccion{
 	width: 75px;
 	display: inline-block;
+}
+.nombre{
+	margin: 0 0 5px 0;
 }
