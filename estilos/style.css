@@ -93,35 +93,45 @@ a{
 	float:center;
 }
 #idDescripcion{
-	margin-left:75px;
+	margin-left:79px;
 }
 #idBotonAgregar{
-	margin-left:75px;
+	margin-left:79px;
 }
-#idNombreUsuario{
-	margin-left:10px;
+#idLabelUsuario{
+	width: 75px;
+	display: inline-block;
 }
-#idNombreEmpresa{
-	margin-left:11px;
+#idLabelEmpresa{
+	width: 75px;
+	display: inline-block;
 }
+#idLabelReclamo{
+	width: 75px;
+	display: inline-block;
+} 
 #idEmpresa{
-	margin-left: 2px;
 	width:183px;
 }
-#idReclamo{
-	margin-left:3px;
-}
 #idBotonEmpresa{
-	margin-left:75px;
-}
-#idRubro{
-	margin-left:25px;
-	width:184px;
-}
-#idNombre{
-	margin-left:11px;
+	margin-left:79px;
 }
 #idTablaEstadisticas{
 	width:1170px;
 	margin: 0 auto;
+}
+#idBotonT{
+	background-color: #33cb31;
+}
+#idLabelNombreEmpresa{
+	width: 75px;
+	display: inline-block;
+}
+#idLabelRubro{
+	width: 75px;
+	display: inline-block;
+}
+#idLabelDireccion{
+	width: 75px;
+	display: inline-block;
 }

@@ -47,16 +47,16 @@
       <article id="idArticle1_2">
         <h2>Agregar Reclamo</h2>
         <form id="idNuevoForm">
-          <label for="idNombreUsuario">Nombre</label>
+          <label for="idNombreUsuario" id="idLabelUsuario">Nombre</label>
           <input id="idNombreUsuario" type="text" name="nombre" placeholder="Tu nombre..." required>
 		  <br>
-          <label for="idEmpresa">Empresa</label>
+          <label for="idEmpresa" id="idLabelEmpresa">Empresa</label>
           <select name="empresa" id="idEmpresa">
             <option value="todoViajes">TodoViajes S.A.</option>
             <option value="alfa">Alfa</option>
           </select>
 		  <br>
-          <label for="idReclamo">Reclamo</label>
+          <label for="idReclamo" id="idLabelReclamo">Reclamo</label>
           <input class="campo" type="text" name="reclamo" id="idReclamo" placeholder="El título es..." required>
 		  <br>
           <textarea rows="5" cols="45" name="reclamo" id="idDescripcion" placeholder="y tu reclamo es..." required></textarea>
@@ -102,7 +102,7 @@
         <h3>Empresas seleccionadas</h3>
         <div id="idEstadisticas">
 			<button>A</button>
-			<button>T</button>
+			<button id="idBotonT">T</button>
 			<button>*</button>
         <br>
 			<input type="radio" id="idCreciente" name="Filtro" checked>
@@ -155,17 +155,17 @@
       <article id="idArticle4_1">
         <h3>Datos:</h3>
         <form>
-          <label for="idNombreEmpresa">Nombre</label>
+          <label for="idNombreEmpresa" id="idLabelNombreEmpresa">Nombre</label>
           <input type="text" name="nombre" id="idNombreEmpresa" required>
           <br>
-          <label for="idDireccion">Dirección</label>
+          <label for="idDireccion" id="idLabelDireccion">Dirección</label>
           <input type="text" name="direccion" id="idDireccion" required>
           <br>
-          <label for="idRubro">Rubro</label>
+          <label for="idRubro" id="idLabelRubro">Rubro</label>
           <select name="rubro" id="idRubro">
             <option value="sindatos" selected>Sin datos</option>
           </select>
-		  <br>
+		      <br>
           <input type="submit" value="Agregar" id="idBotonEmpresa"> 
         </form>
       </article>
