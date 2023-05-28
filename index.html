@@ -33,24 +33,23 @@
           Sitio desarrollado en el curso de Programación 1 - 1er semestre 2023 -
           Universidad ORT Uruguay por:
         </p>
-        <!-- falta poner que sea caption o que este a la derecha -->
-			<p class="nombre" id="idPManuel"><a href="img/manuel.jpg"><img src="img/manuel.jpg" alt="foto de manuel" id="idImgManuel" class="imgEtudiantes"></a>Manuel Stapff - 303636</p>
-			<p class="nombre" id="idPNcolas"><a href="img/nicolas.jpg"><img src="img/nicolas.jpg" alt="foto de nicolas" id="idImgNicolas" class="imgEtudiantes"></a>Nicolás Píriz - 310896</p>
+			<p class="nombre" id="idPManuel"><a href="img/manuel.jpg"><img src="img/manuel.jpg" alt="foto de Manuel" id="idImgManuel" class="imgEtudiantes"></a>Manuel Stapff - 303636</p>
+			<p class="nombre" id="idPNcolas"><a href="img/nicolas.jpg"><img src="img/nicolas.jpg" alt="foto de Nicolás" id="idImgNicolas" class="imgEtudiantes"></a>Nicolás Píriz - 310896</p>
 			<button id="idBotonReclamo">Agrega tu reclamo aquí</button>
       </article>
       <article id="idArticle1_2">
         <h2>Agregar Reclamo</h2>
         <form id="idNuevoForm">
-          <label for="idNombreUsuario" id="idLabelUsuario">Nombre</label>
+          <label for="idNombreUsuario" id="idLabelUsuario" class="labelFormReclamo">Nombre</label>
           <input id="idNombreUsuario" type="text" name="nombre" maxlength="30" placeholder="Tu nombre..." required>
 		  <br>
-          <label for="idEmpresa" id="idLabelEmpresa">Empresa</label>
+          <label for="idEmpresa" id="idLabelEmpresa" class="labelFormReclamo">Empresa</label>
           <select name="empresa" id="idEmpresa">
             <option value="todoViajes">TodoViajes S.A.</option>
             <option value="alfa">Alfa</option>
           </select>
 		  <br>
-          <label for="idReclamo" id="idLabelReclamo">Reclamo</label>
+          <label for="idReclamo" id="idLabelReclamo" class="labelFormReclamo">Reclamo</label>
           <input type="text" maxlength="30" name="reclamo" id="idReclamo" placeholder="El título es..." required>
 		  <br>
           <textarea rows="5" cols="45" name="reclamo" id="idDescripcion" placeholder="Y tu reclamo es..." required></textarea>
@@ -149,13 +148,13 @@
       <article id="idArticle4_1">
         <h3>Datos:</h3>
         <form>
-          <label for="idNombreEmpresa" id="idLabelNombreEmpresa">Nombre</label>
+          <label for="idNombreEmpresa" id="idLabelNombreEmpresa" class="labelFormEmpresa">Nombre</label>
           <input type="text" maxlength="30" name="nombre" id="idNombreEmpresa" required>
           <br>
-          <label for="idDireccion" id="idLabelDireccion">Dirección</label>
+          <label for="idDireccion" id="idLabelDireccion" class="labelFormEmpresa">Dirección</label>
           <input type="text" maxlength="30" name="direccion" id="idDireccion" required>
           <br>
-          <label for="idRubro" id="idLabelRubro">Rubro</label>
+          <label for="idRubro" id="idLabelRubro" class="labelFormEmpresa">Rubro</label>
           <select name="rubro" id="idRubro">
             <option value="sindatos" selected>Sin datos</option>
           </select>
