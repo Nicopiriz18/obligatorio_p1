@@ -4,26 +4,27 @@
   <head>
     <meta charset="UTF-8">
     <title>Tus reclamos</title>
-	<link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/estilos.css">
   </head>
   <body>
-    <header>
-      <nav>
-        <ul id="idUlNav">
-          <li><img src="img/logo.jpg" alt="logo de tus reclamos" id="idLogo"></li>
-          <li><a href="#idSection1">Principal</a></li>
-          <li><a href="#idSection2">Ver Reclamos</a></li>
-          <li><a href="#idSection3">Estadisticas</a></li>
-          <li><a href="#idSection4">Agregar Empresa</a></li>
-          <li>
-            <input id="idBuscar" type="text" maxlength="30">
-            <button><img src="img/lupa.jpg" alt="Buscar" id="idLupa"></button>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <header></header>
+    <nav>
+      <ul id="idUlNav">
+        <li>
+          <img src="img/logo.jpg" alt="logo de tus reclamos" id="idLogo">
+        </li>
+        <li><a href="#idSection1">Principal</a></li>
+        <li><a href="#idSection2">Ver Reclamos</a></li>
+        <li><a href="#idSection3">Estadisticas</a></li>
+        <li><a href="#idSection4">Agregar Empresa</a></li>
+        <li>
+          <input id="idBuscar" type="text" maxlength="30">
+          <button><img src="img/lupa.jpg" alt="Buscar" id="idLupa"></button>
+        </li>
+      </ul>
+    </nav>
     <section id="idSection1">
-	  <h2>Sitio para la gestión de reclamos</h2>
+      <h2>Sitio para la gestión de reclamos</h2>
       <article id="idArticle1_1">
         <h3>
           Este sitio permite ingresar reclamos o quejas y realizar diversas
@@ -33,9 +34,9 @@
           Sitio desarrollado en el curso de Programación 1 - 1er semestre 2023 -
           Universidad ORT Uruguay por:
         </p>
-			<p class="nombre" id="idPManuel"><a href="img/manuel.jpg"><img src="img/manuel.jpg" alt="foto de Manuel" id="idImgManuel" class="imgEtudiantes"></a>Manuel Stapff - 303636</p>
-			<p class="nombre" id="idPNcolas"><a href="img/nicolas.jpg"><img src="img/nicolas.jpg" alt="foto de Nicolás" id="idImgNicolas" class="imgEtudiantes"></a>Nicolás Píriz - 310896</p>
-			<button id="idBotonReclamo">Agrega tu reclamo aquí</button>
+        <p class="nombre" id="idPManuel"><a href="img/manuel.jpg"><img src="img/manuel.jpg" alt="foto de Manuel" id="idImgManuel" class="imgEtudiantes"></a>Manuel Stapff - 303636</p>
+        <p class="nombre" id="idPNcolas"><a href="img/nicolas.jpg"><img src="img/nicolas.jpg" alt="foto de Nicolás" id="idImgNicolas" class="imgEtudiantes"></a>Nicolás Píriz - 310896</p>
+        <button id="idBotonReclamo">Agrega tu reclamo aquí</button>
       </article>
       <article id="idArticle1_2">
         <h2>Agregar Reclamo</h2>
@@ -48,45 +49,47 @@
             <option value="todoViajes">TodoViajes S.A.</option>
             <option value="alfa">Alfa</option>
           </select>
-		  <br>
+          <br>
           <label for="idReclamo" id="idLabelReclamo" class="labelFormReclamo">Reclamo</label>
           <input type="text" maxlength="30" name="reclamo" id="idReclamo" placeholder="El título es..." required>
-		  <br>
+          <br>
           <textarea rows="5" cols="45" name="reclamo" id="idDescripcion" placeholder="Y tu reclamo es..." required></textarea>
-		  <br>
+          <br>
           <input type="submit" value="Agregar" id="idBotonAgregar">
         </form>
       </article>
     </section>
-    <section id="idSection2">	
+    <section id="idSection2">
       <h2>Reclamos ingresados (los mas recientes primero)</h2>
       <article>
         <h3>Reclamo No.2</h3>
         <div class="reclamo">
-			<div class="contenidoReclamo">
-				<p>Anónimo: <span class="comentUsuario">¡Perdí la valija!</span></p>
-				<p>Empresa: <span class="nombreEmpresa">TodoViajes SA</span></p>
-				<p>Viajé por su empresa y la valija no llegó.</p>
-				<button id="idContador1">¡A mi también me pasó!</button>
-				<label for="idContador1">Contador: 3</label>
-			</div>
-		</div>
+          <div class="contenidoReclamo">
+            <p>Anónimo: <span class="comentUsuario">¡Perdí la valija!</span></p>
+            <p>Empresa: <span class="nombreEmpresa">TodoViajes SA</span></p>
+            <p>Viajé por su empresa y la valija no llegó.</p>
+            <button id="idContador1">¡A mi también me pasó!</button>
+            <label for="idContador1">Contador: 3</label>
+          </div>
+        </div>
       </article>
       <article>
         <h3>Reclamo No.1</h3>
         <div class="reclamo">
-			<div class="contenidoReclamo">
-				<p>Luis Pérez: <span class="comentUsuario">Pasaje muy caro</span></p>
-				<p>Empresa: <span class="nombreEmpresa">TodoViajes SA</span></p>
-				<p>
-					El pasaje a BsAs está muy caro, compré con otras compañías y el precio
-					de ustedes es más del doble. Además las otras empresas ofrecen
-					catering
-				</p>
-				<button id="idContador2">¡A mi también me pasó!</button>
-				<label for="idContador2">Contador: 1</label>
-			</div>
-		</div>
+          <div class="contenidoReclamo">
+            <p>
+              Luis Pérez: <span class="comentUsuario">Pasaje muy caro</span>
+            </p>
+            <p>Empresa: <span class="nombreEmpresa">TodoViajes SA</span></p>
+            <p>
+              El pasaje a BsAs está muy caro, compré con otras compañías y el
+              precio de ustedes es más del doble. Además las otras empresas
+              ofrecen catering
+            </p>
+            <button id="idContador2">¡A mi también me pasó!</button>
+            <label for="idContador2">Contador: 1</label>
+          </div>
+        </div>
       </article>
     </section>
     <section id="idSection3">
@@ -94,36 +97,36 @@
       <article id="idArticle3_1">
         <h3>Empresas seleccionadas</h3>
         <div id="idEstadisticas">
-			<button>A</button>
-			<button id="idBotonT">T</button>
-			<button>*</button>
-        <br>
-			<input type="radio" id="idCreciente" name="Filtro" checked>
-			<label for="idCreciente">Orden nombre creciente</label>
-			<input type="radio" id="idDecreciente" name="Filtro">
-			<label for="idDecreciente">Orden nombre decreciente</label>
-		<br>
-        <table id="idTablaEstadisticas">
-          <caption>
-            Empresas que empiezan con T
-          </caption>
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Dirección</th>
-              <th>Rubro</th>
-              <th>Cantidad</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>TodoViajes S.A.</td>
-              <td>Av. Italia 51515</td>
-              <td>Viajes</td>
-              <td>4</td>
-            </tr>
-          </tbody>
-        </table>
+          <button>A</button>
+          <button id="idBotonT">T</button>
+          <button>*</button>
+          <br>
+          <input type="radio" id="idCreciente" name="Filtro" checked>
+          <label for="idCreciente">Orden nombre creciente</label>
+          <input type="radio" id="idDecreciente" name="Filtro">
+          <label for="idDecreciente">Orden nombre decreciente</label>
+          <br>
+          <table id="idTablaEstadisticas">
+            <caption>
+              Empresas que empiezan con T
+            </caption>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Rubro</th>
+                <th>Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>TodoViajes S.A.</td>
+                <td>Av. Italia 51515</td>
+                <td>Viajes</td>
+                <td>4</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </article>
       <article id="idArticle3_2">
@@ -158,8 +161,8 @@
           <select name="rubro" id="idRubro">
             <option value="sindatos" selected>Sin datos</option>
           </select>
-		      <br>
-          <input type="submit" value="Agregar" id="idBotonEmpresa"> 
+          <br>
+          <input type="submit" value="Agregar" id="idBotonEmpresa">
         </form>
       </article>
     </section>
