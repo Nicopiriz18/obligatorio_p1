@@ -1,72 +1,75 @@
 /*Material elaborado por: Nicolás Píriz(310896) y Manuel Stapff(303636)*/
-*{
-	font-family:arial;
+* {
+	font-family: arial;
 }
-body{
+body {
 	background-color: #b0c858;
 }
-#idSection1{
-	background-color: #ff9f79;
-
-}
-#idArticle1_1{
+#idSection1 {
 	background-color: #ff9f79;
 }
-#idArticle1_2{
+#idArticle1_1 {
+	background-color: #ff9f79;
+}
+#idArticle1_2 {
 	background-color: #c39c51;
 }
-#idSection2{
+#idSection2 {
 	background-color: #c07651;
 }
-#idSection3{
+#idSection3 {
 	background-color: #c39c51;
 }
-#idSection4{
+#idSection4 {
 	background-color: #99f997;
 }
-#idLupa{
-	width:20px;
-	height:20px;
+#idLupa {
+	width: 20px;
+	height: 20px;
 }
-#idLogo{
-	width:130px;
-	height:40px;
+#idLogo {
+	width: 70px;
+	height: 20px;
 }
-nav li{
-	margin-left:10px;
-	margin-right:10px;
+/*estilo para los elementos de adentro de la lista del nav*/
+nav li {
+	margin-left: 10px;
+	margin-right: 10px;
 	display: inline;
 }
-nav a{
-	color:#3c6f0b;
+nav a {
+	color: #3c6f0b;
 }
-.imgEtudiantes{
-	width:33px;
-	height:33px;
-	border:1px solid #edc79d;
+.imgEtudiantes {
+	width: 33px;
+	height: 33px;
+	border: 1px solid #edc79d;
 	padding: 5px 5px 5px 5px;
-	border-radius:5px;
+	border-radius: 5px;
 }
-#idBotonReclamo{
+.nombre {
+	margin: 0 0 5px 0;
+}
+#idBotonReclamo {
 	display: block;
 	margin: 0 auto;
-	margin-bottom:10px;
-	border-radius:19px;
-	padding:15px 20px 15px 20px;
-	font-size:23px;
+	margin-bottom: 10px;
+	border-radius: 19px;
+	padding: 15px 20px 15px 20px;
+	font-size: 23px;
 	background-image: linear-gradient(to bottom, #aec252, #c17651);
 }
-.reclamo{
+.reclamo {
 	margin: 0 100px;
 	background-color: white;
 	border: solid 3px black;
 	border-radius: 20px;
 	padding: 5px 0 10px 276px;
 }
-.comentUsuario{
+.comentUsuario {
 	background-color: #ff9f79;
 }
-.nombreEmpresa{
+.nombreEmpresa {
 	background-color: #33cb31;
 }
 
@@ -79,55 +82,41 @@ nav a{
 	border-radius: 10px;
 	background-color: white;
 }
-#idTablaEstadisticas td, #idTablaEstadisticas th {
+#idTablaEstadisticas td,
+#idTablaEstadisticas th {
 	border: solid 3px black;
 }
-#idArticle3_1{
-	float:center;
+
+/*Los siguientes estilos permiten que el textarea y el button del form se encuentren alineados con los anteriores
+El margin es de 79px ya que los labels tienen un width de 75px y se le suma 4px más por los bordes de cada elemento */
+#idDescripcion {
+	margin-left: 79px;
 }
-#idDescripcion{
-	margin-left:79px;
+#idBotonAgregar {
+	margin-left: 79px;
 }
-#idBotonAgregar{
-	margin-left:79px;
-}
-#idLabelUsuario{
+/*El estilo de a continuacion sirve para que los labels del form queden todos del mismo ancho y asi los inputs puedan estar todos alineados*/
+.labelFormReclamo {
 	width: 75px;
 	display: inline-block;
 }
-#idLabelEmpresa{
-	width: 75px;
-	display: inline-block;
+
+#idEmpresa {
+	width: 183px;
 }
-#idLabelReclamo{
-	width: 75px;
-	display: inline-block;
-} 
-#idEmpresa{
-	width:183px;
+#idBotonEmpresa {
+	margin-left: 79px;
 }
-#idBotonEmpresa{
-	margin-left:79px;
-}
-#idTablaEstadisticas{
-	width:1170px;
+#idTablaEstadisticas {
+	width: 1170px;
 	margin: 0 auto;
 }
-#idBotonT{
+#idBotonT {
 	background-color: #33cb31;
 }
-#idLabelNombreEmpresa{
+/*El siguiente estilo se aplica a todos los labels del form que permite agregar la empresa.
+Sirve para que los inputs y el botón queden todos alineados*/
+.labelFormEmpresa {
 	width: 75px;
 	display: inline-block;
-}
-#idLabelRubro{
-	width: 75px;
-	display: inline-block;
-}
-#idLabelDireccion{
-	width: 75px;
-	display: inline-block;
-}
-.nombre{
-	margin: 0 0 5px 0;
 }
