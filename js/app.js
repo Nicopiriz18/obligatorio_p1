@@ -45,21 +45,21 @@ class Empresa{
 }
 
 
-
 window.addEventListener("load", inicio);
 const sys = new Sistema();
 function inicio(){
     const lupa = document.getElementById("idLupa");
     const botonAgregar = document.getElementById("idBotonReclamo");
     const botonAgregarForm = document.getElementById("idBotonAgregar");
-    const principal = document.getElementById("idLinksS1");
-    const verReclamos = document.getElementById("idLinksS2");
-    const estadisticas = document.getElementById("idLinksS3");
-    const seccionAgregar = document.getElementById("idLinksS4");
+    const principal = document.getElementById("idLinkS1");
+    const verReclamos = document.getElementById("idLinkS2");
+    const estadisticas = document.getElementById("idLinkS3");
+    const seccionAgregar = document.getElementById("idLinkS4");
     
     // lupa.addEventListener("click", buscar);
     // botonAgregar.addEventListener("click", nuevoReclamo);
     botonAgregarForm.addEventListener("click", agregarReclamo);
+    principal.addEventListener("click", principal(event));
     // botonNuevaEmpresa.addEventListener("click", agregarEmp);
 }
 
@@ -111,8 +111,18 @@ function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     contenido.appendChild(buttonTambien);
     contenido.appendChild(labelContador);
     divReclamo.appendChild(contenido);
-    document.getElementById("idSection2").appendChild(divReclamo);
+    const article= document.getElementById("idArticle2_1");
+    //El siguiente codigo permite insertar el reclamo al principio del article
+    article.insertBefore(divReclamo, article.children[0]);
 }
+function principal(e){
+    e.preventDefault();
+    console.log("sape");
+}
+// function contador(){
+//     if()
+// }
+
 
 function agregarEmp(){
     const formEmp = document.getElementById("idFormNuevaEmp");
