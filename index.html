@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Tus reclamos</title>
     <link rel="stylesheet" href="css/estilos.css">
+    <script src="js/app.js"></script>
   </head>
   <body>
     <header></header>
@@ -13,10 +14,10 @@
         <li>
           <img src="img/logo.jpg" alt="logo de tus reclamos" id="idLogo">
         </li>
-        <li><a href="#idSection1">Principal</a></li>
-        <li><a href="#idSection2">Ver Reclamos</a></li>
-        <li><a href="#idSection3">Estadisticas</a></li>
-        <li><a href="#idSection4">Agregar Empresa</a></li>
+        <li><a href="#idSection1" id="idLinkS1">Principal</a></li>
+        <li><a href="#idSection2" id="idLinkS2">Ver Reclamos</a></li>
+        <li><a href="#idSection3" id="idLinkS3">Estadisticas</a></li>
+        <li><a href="#idSection4" id="idLinkS4">Agregar Empresa</a></li>
         <li>
           <input id="idBuscar" type="text" maxlength="30">
           <button><img src="img/lupa.jpg" alt="Buscar" id="idLupa"></button>
@@ -58,36 +59,18 @@
       </article>
     </section>
     <section id="idSection2">
-     <!-- <h2>Reclamos ingresados (los mas recientes primero)</h2>
+     <h2>Reclamos ingresados (los mas recientes primero)</h2>
       <article>
-        <h3>Reclamo No.2</h3>
+        <h3>Reclamo No.</h3>
         <div class="reclamo">
           <div class="contenidoReclamo">
-            <p>Anónimo: <span class="comentUsuario">¡Perdí la valija!</span></p>
-            <p>Empresa: <span class="nombreEmpresa">TodoViajes SA</span></p>
-            <p>Viajé por su empresa y la valija no llegó.</p>
+            <p>usuario: <span class="comentUsuario"></span></p>
+            <p>Empresa: <span class="nombreEmpresa"></p>
+            <p></p>
             <button id="idContador1">¡A mi también me pasó!</button>
-            <label for="idContador1">Contador: 3</label>
+            <label for="idContador1">Contador: </label>
           </div>
         </div>
-      </article>
-      <article>
-        <h3>Reclamo No.1</h3>
-        <div class="reclamo">
-          <div class="contenidoReclamo">
-            <p>
-              Luis Pérez: <span class="comentUsuario">Pasaje muy caro</span>
-            </p>
-            <p>Empresa: <span class="nombreEmpresa">TodoViajes SA</span></p>
-            <p>
-              El pasaje a BsAs está muy caro, compré con otras compañías y el
-              precio de ustedes es más del doble. Además las otras empresas
-              ofrecen catering
-            </p>
-            <button id="idContador2">¡A mi también me pasó!</button>
-            <label for="idContador2">Contador: 1</label>
-          </div>
-        </div>-->
       </article>
     </section>
     <section id="idSection3">
@@ -148,7 +131,7 @@
       <h2>Agregar Empresa</h2>
       <article id="idArticle4_1">
         <h3>Datos:</h3>
-        <form>
+        <form id="idFormNuevaEmp">
           <label for="idNombreEmpresa" id="idLabelNombreEmpresa" class="labelFormEmpresa">Nombre</label>
           <input type="text" maxlength="30" name="nombre" id="idNombreEmpresa" required>
           <br>
