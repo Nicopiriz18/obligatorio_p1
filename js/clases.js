@@ -26,7 +26,7 @@ class Reclamo{
         this.titulo = titulo;
         this.descripcion = descripcion;
         //el contador se incializa en 1 cuando se hace un reclamo
-        this.contador = 1;
+        this.contador = 0;
     }
     toString(){
         return(this.nombreUsuario + ": " + this.titulo + "\n" + "empresa: " + this.empresa + "\n" + this.descripcion);

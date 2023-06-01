@@ -19,7 +19,6 @@ class Sistema{
         return resp;
     }
 }
-
 class Reclamo{
     constructor(nombreUSuaurio, empresa, titulo, descripcion){
         this.nombreUsuario = nombreUSuaurio;
@@ -51,16 +50,14 @@ function inicio(){
     const lupa = document.getElementById("idLupa");
     const botonAgregar = document.getElementById("idBotonReclamo");
     const botonAgregarForm = document.getElementById("idBotonAgregar");
-    const principal = document.getElementById("idLinkS1");
-    const verReclamos = document.getElementById("idLinkS2");
-    const estadisticas = document.getElementById("idLinkS3");
-    const seccionAgregar = document.getElementById("idLinkS4");
-    
-    // lupa.addEventListener("click", buscar);
-    // botonAgregar.addEventListener("click", nuevoReclamo);
-    botonAgregarForm.addEventListener("click", agregarReclamo);
-    principal.addEventListener("click", principal);
-    // botonNuevaEmpresa.addEventListener("click", agregarEmp);
+    const linkPrincipal = document.getElementById("idLinkS1");
+    const linkVerReclamos = document.getElementById("idLinkS2");
+    const linkEstadisticas = document.getElementById("idLinkS3");
+    const linkAgregar = document.getElementById("idLinkS4");
+    linkPrincipal.addEventListener("click", verPrincipal);
+    linkVerReclamos.addEventListener("click", verReclamos);
+    linkEstadisticas.addEventListener("click", verEstadisticas);
+    linkAgregar.addEventListener("click", verAgregar);
 }
 
 function agregarReclamo(){
@@ -115,16 +112,11 @@ function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     //El siguiente codigo permite insertar el reclamo al principio del article
     article.insertBefore(divReclamo, article.children[0]);
 }
-function principal(e){
-    e.preventDefault();
-    console.log("sape");
-}
+
 // function contador(){
 //     if()
 // }
-
-
-function agregarEmp(){
+/*function agregarEmp(){
     const formEmp = document.getElementById("idFormNuevaEmp");
     if(formEmp.reportValidity()){
         const nombreEmpresa = document.getElementById("idNombreEmpresa").value;
@@ -133,6 +125,19 @@ function agregarEmp(){
         const empresa0 = new Empresa(nombreEmpresa, direccion, rubro);
         sys.agregarEmpresa(empresa0);
     }
+}*/
+function verPrincipal(){
+    alert("se apreto principal");
+    ocultar([])
 }
-
-
+function verReclamos(){
+    alert("se apreto ver reclamos");
+}
+function verEstadisticas(){
+    alert("se aprwto ver estadisticas");
+}
+function verAgregar(){
+    alert("se apreto agregar");
+}
+function ocultar(){
+}
