@@ -58,6 +58,13 @@ function inicio(){
     linkVerReclamos.addEventListener("click", verReclamos);
     linkEstadisticas.addEventListener("click", verEstadisticas);
     linkAgregar.addEventListener("click", verAgregar);
+
+    // lupa.addEventListener("click", buscar);
+    // botonAgregar.addEventListener("click", nuevoReclamo);
+    botonAgregarForm.addEventListener("click", agregarReclamo);
+    document.getElementById("idSection2").addEventListener("click", function(e) {
+        contador(e);
+      });
 }
 
 function agregarReclamo(){
@@ -101,7 +108,11 @@ function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     buttonTambien.innerText="¡A mi también me pasó!"
     const labelContador = document.createElement("label");
     labelContador.setAttribute("for", numero);
-    labelContador.innerText="Contador: 1";
+    labelContador.innerText="Contador: ";
+    const spanLabelContador = document.createElement("span");
+    spanLabelContador.setAttribute("id", "idSpanBoton"+numero);
+    spanLabelContador.innerText="1";
+    labelContador.appendChild(spanLabelContador);
     contenido.appendChild(pUsuario);
     contenido.appendChild(pEmpresa);
     contenido.appendChild(pDescripcion);
@@ -113,10 +124,18 @@ function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     article.insertBefore(divReclamo, article.children[0]);
 }
 
-// function contador(){
-//     if()
-// }
-/*function agregarEmp(){
+function contador(e){
+    if(e.target.tagName === 'BUTTON'){
+        const idDelBoton = e.target.id;
+        sys.reclamos[idDelBoton - 1].contador++;
+        const spanContador = document.getElementById("idSpanBoton"+idDelBoton);
+        spanContador.innerText=sys.reclamos[idDelBoton-1].contador;
+    }
+}
+
+
+/*
+function agregarEmp(){
     const formEmp = document.getElementById("idFormNuevaEmp");
     if(formEmp.reportValidity()){
         const nombreEmpresa = document.getElementById("idNombreEmpresa").value;
@@ -138,6 +157,8 @@ function verEstadisticas(){
 }
 function verAgregar(){
     alert("se apreto agregar");
+        // botonNuevaEmpresa.addEventListener("click", agregarEmp);
+
 }
 function ocultar(){
 }
