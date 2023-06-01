@@ -59,7 +59,7 @@ function inicio(){
     // lupa.addEventListener("click", buscar);
     // botonAgregar.addEventListener("click", nuevoReclamo);
     botonAgregarForm.addEventListener("click", agregarReclamo);
-    principal.addEventListener("click", principal(event));
+    principal.addEventListener("click", principal);
     // botonNuevaEmpresa.addEventListener("click", agregarEmp);
 }
 
