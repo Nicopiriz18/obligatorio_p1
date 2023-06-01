@@ -1,52 +1,7 @@
-class Sistema{
-    constructor(){
-        this.empresas = [];
-        this.reclamos = [];
-    }
-    agregarEmpresa(emp){
-        this.empresas.push(emp);
-    }
-    agregarReclamo(rec){
-        this.reclamos.push(rec);
-    }
-    buscarReclamo(keyword){
-        let resp = [];
-        for(let i=0; i<this.reclamos.length; i++){
-            if(rec.toString().toUpperCase().includes(keyword.toUpperCase())){
-                resp.push(i);
-            }
-        }
-        return resp;
-    }
-}
-class Reclamo{
-    constructor(nombreUSuaurio, empresa, titulo, descripcion){
-        this.nombreUsuario = nombreUSuaurio;
-        this.empresa = empresa;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        //el contador se incializa en 1 cuando se hace un reclamo
-        this.contador = 1;
-    }
-    toString(){
-        return(this.nombreUsuario + ": " + this.titulo + "\n" + "empresa: " + this.empresa + "\n" + this.descripcion);
-    }
-}
-
-
-class Empresa{
-    constructor(nomb, dir, rub){
-        this.nombre = nomb;
-        this.direccion = dir;
-        this.rubro = rubro;
-        this.cantidad = 0;
-    }
-}
-
-
 window.addEventListener("load", inicio);
 const sys = new Sistema();
 function inicio(){
+    ocultarMenos([1,1,0,0,0,0]);
     const lupa = document.getElementById("idLupa");
     const botonAgregar = document.getElementById("idBotonReclamo");
     const botonAgregarForm = document.getElementById("idBotonAgregar");
@@ -58,15 +13,13 @@ function inicio(){
     linkVerReclamos.addEventListener("click", verReclamos);
     linkEstadisticas.addEventListener("click", verEstadisticas);
     linkAgregar.addEventListener("click", verAgregar);
-
+    botonAgregar.addEventListener("click", nuevoReclamo)
     // lupa.addEventListener("click", buscar);
-    // botonAgregar.addEventListener("click", nuevoReclamo);
     botonAgregarForm.addEventListener("click", agregarReclamo);
     document.getElementById("idSection2").addEventListener("click", function(e) {
         contador(e);
       });
 }
-
 function agregarReclamo(){
     const formRec = document.getElementById("idNuevoForm");
     if(formRec.reportValidity()){
@@ -78,6 +31,7 @@ function agregarReclamo(){
         sys.agregarReclamo(reclamo0);
         const numReclamo = sys.reclamos.indexOf(reclamo0) + 1;
         crearElementoReclamo(nombreUsuario, titulo, empresa, descripcion, numReclamo);
+        formRec.reset();
     }
 }
 function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
@@ -133,32 +87,79 @@ function contador(e){
     }
 }
 
-
-/*
 function agregarEmp(){
     const formEmp = document.getElementById("idFormNuevaEmp");
+    const selectEmpresas=document.getElementById("idEmpresa");
     if(formEmp.reportValidity()){
         const nombreEmpresa = document.getElementById("idNombreEmpresa").value;
         const direccion = document.getElementById("idDireccion").value;
         const rubro = document.getElementById("idRubro").value;
-        const empresa0 = new Empresa(nombreEmpresa, direccion, rubro);
-        sys.agregarEmpresa(empresa0);
+        const nuevaEmpresa = new Empresa(nombreEmpresa, direccion, rubro);
+        sys.agregarEmpresa(nuevaEmpresa);
+        const option = document.createElement('option');
+        option.text = nombreEmpresa;
+        selectEmpresas.add(option);
+        formEmp.reset();
     }
-}*/
+}
+function nuevoReclamo(){
+    ocultarMenos([1,0,1,0,0,0])
+}
 function verPrincipal(){
-    alert("se apreto principal");
-    ocultar([])
+    ocultarMenos([1,1,0,0,0,0]);
 }
 function verReclamos(){
-    alert("se apreto ver reclamos");
+    ocultarMenos([0,0,0,1,0,0]) ;
 }
 function verEstadisticas(){
-    alert("se aprwto ver estadisticas");
+    ocultarMenos([0,0,0,0,1,0]);
 }
 function verAgregar(){
-    alert("se apreto agregar");
-        // botonNuevaEmpresa.addEventListener("click", agregarEmp);
-
+    ocultarMenos([0,0,0,0,0,1]);
+    //botonNuevaEmpresa.addEventListener("click", agregarEmp);
 }
-function ocultar(){
+function ocultarMenos(arr){
+    const sec1=document.getElementById("idSection1");
+    const art1_1=document.getElementById("idArticle1_1");
+    const art1_2=document.getElementById("idArticle1_2");
+    const sec2=document.getElementById("idSection2");
+    const sec3=document.getElementById("idSection3");
+    const sec4=document.getElementById("idSection4");
+    sec1.style.display="none";
+    art1_1.style.display="none";
+    art1_2.style.display="none";
+    sec2.style.display="none";
+    sec3.style.display="none";
+    sec4.style.display="none";
+    for(let i=0;i<arr.length;i++){
+        if(arr[i]===1){
+            switch(i){
+                case 0:
+                    sec1.style.display="block";
+                    break;
+                case 1:
+                    art1_1.style.display="block";
+                    break;
+                case 2:
+                    art1_2.style.display="block";
+                    break;
+                case 3:
+                    sec2.style.display="block";
+                    break;
+                case 4:
+                    sec3.style.display="block";
+                    break;
+                case 5:
+                    sec4.style.display="block";
+                    break;
+             }
+        }
+    }
 }
+//[a0,a1,a2,a3,a4,a5]
+//el elemento a0 corresponde a la seccion 1 
+//el elemento a1 corresponde a la parte de principal
+//el elemento a2 corresponde a la parte de agregar reclamo
+//el elemento a3 corresponde a los reclamos ingresados
+//el elemento a4 corresponde a las estadisticas
+//el elemento a5 corresponde a la parte de agregar empresa

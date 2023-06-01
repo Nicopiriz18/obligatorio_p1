@@ -11,14 +11,14 @@ class Sistema{
     }
     buscarReclamo(keyword){
         let resp = [];
-        for(let rec of this.reclamos){
+        for(let i=0; i<this.reclamos.length; i++){
             if(rec.toString().toUpperCase().includes(keyword.toUpperCase())){
-                resp.push(rec);
+                resp.push(i);
             }
         }
+        return resp;
     }
 }
-
 class Reclamo{
     constructor(nombreUSuaurio, empresa, titulo, descripcion){
         this.nombreUsuario = nombreUSuaurio;
@@ -26,7 +26,7 @@ class Reclamo{
         this.titulo = titulo;
         this.descripcion = descripcion;
         //el contador se incializa en 1 cuando se hace un reclamo
-        this.contador = 0;
+        this.contador = 1;
     }
     toString(){
         return(this.nombreUsuario + ": " + this.titulo + "\n" + "empresa: " + this.empresa + "\n" + this.descripcion);
