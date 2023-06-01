@@ -61,6 +61,9 @@ function inicio(){
     botonAgregarForm.addEventListener("click", agregarReclamo);
     principal.addEventListener("click", principal);
     // botonNuevaEmpresa.addEventListener("click", agregarEmp);
+    document.getElementById("idSection2").addEventListener("click", function(e) {
+        contador(e);
+      });
 }
 
 function agregarReclamo(){
@@ -104,7 +107,11 @@ function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     buttonTambien.innerText="¡A mi también me pasó!"
     const labelContador = document.createElement("label");
     labelContador.setAttribute("for", numero);
-    labelContador.innerText="Contador: 1";
+    labelContador.innerText="Contador: ";
+    const spanLabelContador = document.createElement("span");
+    spanLabelContador.setAttribute("id", "idSpanBoton"+numero);
+    spanLabelContador.innerText="1";
+    labelContador.appendChild(spanLabelContador);
     contenido.appendChild(pUsuario);
     contenido.appendChild(pEmpresa);
     contenido.appendChild(pDescripcion);
@@ -115,13 +122,16 @@ function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     //El siguiente codigo permite insertar el reclamo al principio del article
     article.insertBefore(divReclamo, article.children[0]);
 }
-function principal(e){
-    e.preventDefault();
-    console.log("sape");
+
+function contador(e){
+    if(e.target.tagName === 'BUTTON'){
+        const idDelBoton = e.target.id;
+        sys.reclamos[idDelBoton - 1].contador++;
+        const spanContador = document.getElementById("idSpanBoton"+idDelBoton);
+        spanContador.innerText=sys.reclamos[idDelBoton-1].contador;
+    }
 }
-// function contador(){
-//     if()
-// }
+
 
 
 function agregarEmp(){
@@ -134,5 +144,4 @@ function agregarEmp(){
         sys.agregarEmpresa(empresa0);
     }
 }
-
 
