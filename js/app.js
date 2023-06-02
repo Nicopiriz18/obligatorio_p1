@@ -9,6 +9,8 @@ function inicio(){
     const linkVerReclamos = document.getElementById("idLinkS2");
     const linkEstadisticas = document.getElementById("idLinkS3");
     const linkAgregar = document.getElementById("idLinkS4");
+    const botonVolver=document.getElementById("idBotonVolver")
+    botonVolver.addEventListener("click", verPrincipal)
     linkPrincipal.addEventListener("click", verPrincipal);
     linkVerReclamos.addEventListener("click", verReclamos);
     linkEstadisticas.addEventListener("click", verEstadisticas);
@@ -36,34 +38,35 @@ function agregarReclamo(){
 }
 function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     const divReclamo = document.createElement("div");
-    divReclamo.setAttribute("class", "containerReclamo");
     const contenido = document.createElement("div");
-    contenido.setAttribute("class", "reclamo");
     const heading = document.createElement("h3");
     const t = document.createTextNode("Reclamo No. " + numero);
-    heading.appendChild(t);
-    divReclamo.appendChild(heading);
     const pUsuario = document.createElement("p");
+    const spanTitulo = document.createElement("span"); 
+    const pEmpresa = document.createElement("p"); 
+    const spanEmpresa = document.createElement("span"); 
+    const pDescripcion = document.createElement("p");
+    const buttonTambien = document.createElement("button");
+    const labelContador = document.createElement("label");
+    const spanLabelContador = document.createElement("span");
+    const article= document.getElementById("idArticle2_1");
+    divReclamo.setAttribute("class", "containerReclamo");
+    contenido.setAttribute("class", "reclamo");
+    heading.appendChild(t);
+    divReclamo.appendChild(heading); 
     pUsuario.innerText = nombre + ": ";
-    const spanTitulo = document.createElement("span");
     spanTitulo.setAttribute("class", "comentUsuario");
     spanTitulo.innerText=titulo;
     pUsuario.appendChild(spanTitulo);
-    const pEmpresa = document.createElement("p");
     pEmpresa.innerText="Empresa: ";
-    const spanEmpresa = document.createElement("span");
     spanEmpresa.setAttribute("class", "nombreEmpresa");
     spanEmpresa.innerText=empresa;
     pEmpresa.appendChild(spanEmpresa);
-    const pDescripcion = document.createElement("p");
     pDescripcion.innerText=descripcion;
-    const buttonTambien = document.createElement("button");
     buttonTambien.setAttribute("id", numero);
     buttonTambien.innerText="¡A mi también me pasó!"
-    const labelContador = document.createElement("label");
     labelContador.setAttribute("for", numero);
     labelContador.innerText="Contador: ";
-    const spanLabelContador = document.createElement("span");
     spanLabelContador.setAttribute("id", "idSpanBoton"+numero);
     spanLabelContador.innerText="1";
     labelContador.appendChild(spanLabelContador);
@@ -73,11 +76,9 @@ function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     contenido.appendChild(buttonTambien);
     contenido.appendChild(labelContador);
     divReclamo.appendChild(contenido);
-    const article= document.getElementById("idArticle2_1");
     //El siguiente codigo permite insertar el reclamo al principio del article
     article.insertBefore(divReclamo, article.children[0]);
 }
-
 function contador(e){
     if(e.target.tagName === 'BUTTON'){
         const idDelBoton = e.target.id;
@@ -86,37 +87,73 @@ function contador(e){
         spanContador.innerText=sys.reclamos[idDelBoton-1].contador;
     }
 }
-
 function agregarEmp(){
     const formEmp = document.getElementById("idFormNuevaEmp");
     const selectEmpresas=document.getElementById("idEmpresa");
-    if(formEmp.reportValidity()){
-        const nombreEmpresa = document.getElementById("idNombreEmpresa").value;
-        const direccion = document.getElementById("idDireccion").value;
+    const nombreEmpresa = document.getElementById("idNombreEmpresa").value;
+    const direccion = document.getElementById("idDireccion").value;
+    let nombreNoEsta=true;
+    let direccionNoEsta=true;
+        for (const i in sys.empresas) {
+            if(sys.empresas[i].nombre===nombreEmpresa){
+                alert("Empresa ya ingresada")
+                nombreNoEsta=false;
+            }
+        }
+    for (const i in sys.empresas){
+        if(sys.empresas[i].direccion===direccion){
+            alert("Direccion ya ingresada");
+            direccionNoEsta=false;
+        }
+    }
+    if(formEmp.reportValidity() && nombreNoEsta&& direccionNoEsta){
+        
         const rubro = document.getElementById("idRubro").value;
         const nuevaEmpresa = new Empresa(nombreEmpresa, direccion, rubro);
         sys.agregarEmpresa(nuevaEmpresa);
-        const option = document.createElement('option');
-        option.text = nombreEmpresa;
-        selectEmpresas.add(option);
+        const option = document.createElement("option");
+       option.textContent = nombreEmpresa;
+        selectEmpresas.appendChild(option);
+        //selectEmpresas.add(option);
         formEmp.reset();
     }
 }
 function nuevoReclamo(){
-    ocultarMenos([1,0,1,0,0,0])
+    let contador=0;
+    for (const i in sys.empresas){
+        contador++;
+    }
+    if(contador!==0){
+        ocultarMenos([1,0,1,0,0,0]);
+    }else{
+        alert("Debe ingresar empresas primero")
+    }
+    
 }
 function verPrincipal(){
     ocultarMenos([1,1,0,0,0,0]);
 }
 function verReclamos(){
     ocultarMenos([0,0,0,1,0,0]) ;
+    let contador=0;
+    for(const i in sys.reclamos){
+        contador++
+    }
+    if(contador===0){
+        const nuevoP=document.createElement("p");
+        const textoAmostrar=document.createTextNode("Sin datos");
+        nuevoP.appendChild(textoAmostrar);
+        const parteReclamos=document.getElementById("idArticle2_1")
+        parteReclamos.appendChild(nuevoP);
+    }
 }
 function verEstadisticas(){
     ocultarMenos([0,0,0,0,1,0]);
 }
 function verAgregar(){
+    const botonNuevaEmpresa = document.getElementById("idBotonEmpresa")
     ocultarMenos([0,0,0,0,0,1]);
-    //botonNuevaEmpresa.addEventListener("click", agregarEmp);
+    botonNuevaEmpresa.addEventListener("click", agregarEmp);
 }
 function ocultarMenos(arr){
     const sec1=document.getElementById("idSection1");

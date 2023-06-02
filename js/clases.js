@@ -32,10 +32,8 @@ class Reclamo{
         return(this.nombreUsuario + ": " + this.titulo + "\n" + "empresa: " + this.empresa + "\n" + this.descripcion);
     }
 }
-
-
 class Empresa{
-    constructor(nomb, dir, rub){
+    constructor(nomb, dir, rubro){
         this.nombre = nomb;
         this.direccion = dir;
         this.rubro = rubro;

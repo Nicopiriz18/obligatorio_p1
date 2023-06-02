@@ -38,7 +38,7 @@ nav li {
 	display: inline;
 }
 nav a {
-	color: #3c6f0b;
+	color: #276c02;
 }
 .imgEtudiantes {
 	width: 33px;
@@ -119,4 +119,10 @@ Sirve para que los inputs y el botón queden todos alineados*/
 .labelFormEmpresa {
 	width: 75px;
 	display: inline-block;
+}
+.linkNav:hover{
+	color: #db9c5d;
+}
+.linkNav{
+	font-weight: bold;
 }
