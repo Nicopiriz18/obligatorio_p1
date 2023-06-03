@@ -17,7 +17,7 @@ function inicio(){
     linkEstadisticas.addEventListener("click", verEstadisticas);
     linkAgregar.addEventListener("click", verAgregar);
     botonAgregar.addEventListener("click", nuevoReclamo)
-    // lupa.addEventListener("click", buscar);
+    lupa.addEventListener("click", buscar);
     botonAgregarForm.addEventListener("click", agregarReclamo);
     document.getElementById("idSection2").addEventListener("click", function(e) {
         contador(e);
@@ -52,6 +52,7 @@ function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     const spanLabelContador = document.createElement("span");
     const article= document.getElementById("idArticle2_1");
     divReclamo.setAttribute("class", "containerReclamo");
+    divReclamo.setAttribute("id", "idDivReclamoNumero"+numero)
     contenido.setAttribute("class", "reclamo");
     heading.appendChild(t);
     divReclamo.appendChild(heading); 
@@ -235,3 +236,23 @@ function ocultarMenos(arr){
 //el elemento a3 corresponde a los reclamos ingresados
 //el elemento a4 corresponde a las estadisticas
 //el elemento a5 corresponde a la parte de agregar empresa
+
+function buscar(){
+    const inputBuscar = document.getElementById("idBuscar");
+    const keyword = inputBuscar.value;
+    const reclamos = document.getElementsByClassName("containerReclamo");
+    const divsAMantener = sys.buscarReclamos(keyword);
+    for(let rec of reclamos){
+        const idDelBoton = parseInt(rec.children[1].children[3].getAttribute("id"));
+        //hacemos parseInt porque al buscar los reclamos nos devuelve la posicion de los reclamos (entero)
+        //y preferimos evitar hacer una comparacion no estricta
+        if(divsAMantener.includes(idDelBoton)){
+            rec.style.display="block";
+        }else{
+            rec.style.display="none";
+        }
+    }
+    if(divsAMantener.length === 0){
+        
+    }
+}
