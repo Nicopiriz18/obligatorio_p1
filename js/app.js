@@ -2,6 +2,7 @@ window.addEventListener("load", inicio);
 const sys = new Sistema();
 function inicio(){
     ocultarMenos([1,1,0,0,0,0]);
+    const arrayLetras=[];
     const lupa = document.getElementById("idLupa");
     const botonAgregar = document.getElementById("idBotonReclamo");
     const botonAgregarForm = document.getElementById("idBotonAgregar");
@@ -87,6 +88,7 @@ function contador(e){
         spanContador.innerText=sys.reclamos[idDelBoton-1].contador;
     }
 }
+const arrayLetras=[];
 function agregarEmp(){
     const formEmp = document.getElementById("idFormNuevaEmp");
     const selectEmpresas=document.getElementById("idEmpresa");
@@ -116,7 +118,38 @@ function agregarEmp(){
         selectEmpresas.appendChild(option);
         //selectEmpresas.add(option);
         formEmp.reset();
+        //el siguiente codigo agrega un boton con la inicial de la empresa ingresada
+        nom=nombreEmpresa.toUpperCase();
+        const letra=nom.charAt(0);
+        const botonAst=document.getElementById("*")
+        if(!(arrayLetras.includes(letra))){
+            arrayLetras.push(letra);
+            arrayLetras.sort();
+            const botonLetra=document.createElement("button");
+            botonLetra.textContent = letra;
+            const divPadre=document.getElementById("idContainerBotones");
+            while (divPadre.firstChild){
+                divPadre.removeChild(divPadre.firstChild);
+            }
+            for (let i=0; i<arrayLetras.length;i++){
+                const letraActual = arrayLetras[i];
+                const boton = document.createElement("button");
+                boton.textContent=letraActual;
+                divPadre.appendChild(boton);
+                boton.addEventListener("click", function() {
+                    filtroTabla(letraActual);
+                  });
+            }
+            divPadre.appendChild(botonAst);
+            botonAst.addEventListener("click", function(){
+               filtroTabla("*");
+            });
+        }
     }
+}
+function filtroTabla(letraBoton){
+    //esta funcion hará que se oculten las empresas en la tabla excepto las del boton clickedo
+    console.log("se hizo click en:"+letraBoton)
 }
 function nuevoReclamo(){
     let contador=0;
@@ -145,6 +178,8 @@ function verReclamos(){
         nuevoP.appendChild(textoAmostrar);
         const parteReclamos=document.getElementById("idArticle2_1")
         parteReclamos.appendChild(nuevoP);
+    }else{
+        ocultarMenos([0,0,0,1,0,0]);
     }
 }
 function verEstadisticas(){

@@ -126,3 +126,6 @@ Sirve para que los inputs y el botón queden todos alineados*/
 .linkNav{
 	font-weight: bold;
 }
+.boton{
+	display: inline;
+}
