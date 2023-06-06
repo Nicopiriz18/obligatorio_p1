@@ -248,8 +248,6 @@ function filtroTabla(e){
         console.log("se hizo click en: "+letraPresionada);
         botonPresionado.classList.add("botonSeleccionado")
     }
-    for(let i=0;i<sys.empresas.length;i++){
-    }
 }
 
 
