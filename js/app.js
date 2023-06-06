@@ -41,8 +41,15 @@ function agregarReclamo(){
         actualizarEstadisticasNuevoReclamo(reclamo0);
     }
 }
-function actualizarEstadisticasNuevoReclamo(reclamo0){
-    
+function actualizarEstadisticasNuevoReclamo(reclamo){
+    const rowAActualizar = document.getElementById("idRow"+reclamo.empresa.nombre);
+    rowAActualizar.children[3].innerText = reclamo.empresa.cantidad;
+    const spanPromedio = document.getElementById("idSpanPromedio");
+    let cantidadTotal = 0;
+    for(let rec of sys.reclamos){
+        cantidadTotal+=rec.cantidad;
+    }
+    spanPromedio.innerText = cantidadTotal/sys.reclamos.length;
 }
 function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     const divReclamo = document.createElement("div");
