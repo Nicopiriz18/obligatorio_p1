@@ -137,14 +137,8 @@ function agregarEmp(){
                 const boton = document.createElement("button");
                 boton.textContent=letraActual;
                 divPadre.appendChild(boton);
-                boton.addEventListener("click", function() {
-                    filtroTabla(letraActual);
-                  });
             }
             divPadre.appendChild(botonAst);
-            botonAst.addEventListener("click", function(){
-               filtroTabla("*");
-            });
         }
     }
 }
