@@ -47,7 +47,7 @@ function actualizarEstadisticasNuevoReclamo(reclamo){
     const spanPromedio = document.getElementById("idSpanPromedio");
     let cantidadTotal = 0;
     for(let rec of sys.reclamos){
-        cantidadTotal+=rec.cantidad;
+        cantidadTotal+=rec.contador;
     }
     spanPromedio.innerText = cantidadTotal/sys.reclamos.length;
 }
@@ -95,6 +95,7 @@ function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     //El siguiente codigo permite insertar el reclamo al principio del article
     article.insertBefore(divReclamo, article.children[0]);
 }
+
 function contador(e){
     if(e.target.tagName === 'BUTTON'){
         const idDelBoton = e.target.id;
@@ -180,9 +181,7 @@ function nuevoReclamo(){
     }
     
 }
-function verPrincipal(){
-    ocultarMenos([1,1,0,0,0,0]);
-}
+
 function verReclamos(){
     ocultarMenos([0,0,0,1,0,0]) ;
     let contador=0;
