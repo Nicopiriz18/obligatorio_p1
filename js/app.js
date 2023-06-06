@@ -36,7 +36,13 @@ function agregarReclamo(){
         const numReclamo = sys.reclamos.indexOf(reclamo0) + 1;
         crearElementoReclamo(nombreUsuario, titulo, empresa, descripcion, numReclamo);
         formRec.reset();
+        //el siguiente codigo se encarga de sumarle 1 a la cantidad de reclamos para la empresa
+        objetoEmpresa.cantidad++;
+        actualizarEstadisticasNuevoReclamo(reclamo0);
     }
+}
+function actualizarEstadisticasNuevoReclamo(reclamo0){
+    
 }
 function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     const divReclamo = document.createElement("div");
@@ -139,6 +145,7 @@ function agregarEmp(){
                 }
                 divPadre.appendChild(botonAst);
             }
+            actualizarEstadisticasNuevaEmpresa(nuevaEmpresa);
         } else{
             if(!nombreNoEsta){
                 alert("Nombre ya asignado");
@@ -254,7 +261,44 @@ function buscar(){
             rec.style.display="none";
         }
     }
-    if(divsAMantener.length === 0){
+    
+    // if(divsAMantener.length === 0){
         
-    }
+    // }
+    ocultarMenos([0, 0, 0, 1, 0, 0])
+}
+//La siguiente funcion es una a ejecutarse cuandos se agrega una nueva empresa que se encarga de actualizar la parte de estadisticas
+function actualizarEstadisticasNuevaEmpresa(empresa){
+    const primeraLetra = empresa.nombre[0].toUpperCase();
+    const tablaEstadisticas = document.getElementById("idTablaEstadisticas");
+    const nuevaRow = document.createElement("tr");
+    //le agregamos a la fila entera una clase relativa a la letra con la que empieza para que luego nos sea mas facil ocultar
+    //o mostrar segun los botones
+    nuevaRow.setAttribute("class", "empiezaCon"+primeraLetra);
+    nuevaRow.setAttribute("id", "idRow"+empresa.nombre)
+    const tdNombreEmpresa = document.createElement("td");
+    const tdDireccionEmpresa = document.createElement("td");
+    const tdRubroEmpresa = document.createElement("td");
+    const tdCantidadEmpresa = document.createElement("td");
+    tdNombreEmpresa.innerText = empresa.nombre;
+    tdDireccionEmpresa.innerText = empresa.direccion;
+    tdRubroEmpresa.innerText = empresa.rubro;
+    tdCantidadEmpresa.innerText = 0;
+    nuevaRow.appendChild(tdNombreEmpresa);
+    nuevaRow.appendChild(tdDireccionEmpresa);
+    nuevaRow.appendChild(tdRubroEmpresa);
+    nuevaRow.appendChild(tdCantidadEmpresa);
+    //accedemos al tbody haciendo children[2] ya que el primer hijo es la caption, segundo thead y tercero el tbody
+    tablaEstadisticas.children[2].appendChild(nuevaRow);
+    const listaSinReclamos = document.getElementById("idUlSinReclamos");
+    const nuevoLi = document.createElement("li");
+    nuevoLi.innerText = empresa.toString();
+    nuevoLi.setAttribute("id", "idLi"+empresa.nombre);
+    listaSinReclamos.appendChild(nuevoLi);
+    let empresasRegistradas = sys.empresas.length;
+    let cantidadTotal = 10;
+    const spanPromedio = document.getElementById("idSpanPromedio");
+    spanPromedio.innerHTML= cantidadTotal/empresasRegistradas;
+    const spanTotalEmpresas = document.getElementById("idSpanTotalEmpresas");
+    spanTotalEmpresas.innerText = empresasRegistradas;
 }

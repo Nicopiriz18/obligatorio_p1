@@ -22,8 +22,8 @@ class Sistema{
     }
     buscarEmpresaPorNombre(nombre){
         for(let emp of this.empresas){
-            if(nombre === emp){
-                return emp;
+            if(nombre === emp.nombre){
+                return emp; 
             }
         }
     }
@@ -47,5 +47,8 @@ class Empresa{
         this.direccion = dir;
         this.rubro = rubro;
         this.cantidad = 0;
+    }
+    toString(){
+        return (this.nombre + " ("  + this.direccion + ") Rubro: " + this.rubro);
     }
 }
