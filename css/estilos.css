@@ -126,6 +126,15 @@ Sirve para que los inputs y el botón queden todos alineados*/
 .linkNav{
 	font-weight: bold;
 }
-.boton{
-	display: inline;
+.botonSeleccionado {
+	background-color: #33cb31;
+  }
+section{
+	display:none;
+}
+#idSection1{
+	display:block;
+}
+#idArticle1_2{
+	display:none;
 }

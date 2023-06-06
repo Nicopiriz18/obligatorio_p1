@@ -1,7 +1,6 @@
 window.addEventListener("load", inicio);
 const sys = new Sistema();
 function inicio(){
-    ocultarMenos([1,1,0,0,0,0]);
     const arrayLetras=[];
     const lupa = document.getElementById("idLupa");
     const botonAgregar = document.getElementById("idBotonReclamo");
@@ -24,6 +23,7 @@ function inicio(){
       });
 }
 function agregarReclamo(){
+	document.getElementById("idSinDatos").style.display="none";
     const formRec = document.getElementById("idNuevoForm");
     if(formRec.reportValidity()){
         const nombreUsuario = document.getElementById("idNombreUsuario").value;
@@ -150,6 +150,7 @@ function agregarEmp(){
                     const boton = document.createElement("button");
                     boton.textContent=letraActual;
                     divPadre.appendChild(boton);
+                    boton.setAttribute("id", letraActual);
                 }
                 divPadre.appendChild(botonAst);
             }
@@ -165,9 +166,19 @@ function agregarEmp(){
 
     }
 }
-function filtroTabla(letraBoton){
+function filtroTabla(e){
     //esta funcion hará que se oculten las empresas en la tabla excepto las del boton clickedo
-    console.log("se hizo click en:"+letraBoton)
+    if(e.target.tagName === 'BUTTON'){
+        const letraPresionada=e.target.id;
+        const botonPresionado=document.getElementById(letraPresionada);
+		const divBotones=document.getElementById("idContainerBotones");
+        const botones = divBotones.querySelectorAll("button");
+        for (const boton of botones) {
+            boton.classList.remove("botonSeleccionado");
+        }
+        console.log("se hizo click en: "+letraPresionada);
+        botonPresionado.classList.add("botonSeleccionado")
+    }
 }
 function nuevoReclamo(){
     let contador=0;
@@ -183,23 +194,13 @@ function nuevoReclamo(){
 }
 
 function verReclamos(){
-    ocultarMenos([0,0,0,1,0,0]) ;
-    let contador=0;
-    for(const i in sys.reclamos){
-        contador++
-    }
-    if(contador===0){
-        const nuevoP=document.createElement("p");
-        const textoAmostrar=document.createTextNode("Sin datos");
-        nuevoP.appendChild(textoAmostrar);
-        const parteReclamos=document.getElementById("idArticle2_1")
-        parteReclamos.appendChild(nuevoP);
-    }else{
-        ocultarMenos([0,0,0,1,0,0]);
-    }
+    ocultarMenos([0,0,0,1,0,0]);
 }
 function verEstadisticas(){
     ocultarMenos([0,0,0,0,1,0]);
+    document.getElementById("idContainerBotones").addEventListener("click", function(e){
+        filtroTabla(e);
+    })
 }
 function verAgregar(){
     const botonNuevaEmpresa = document.getElementById("idBotonEmpresa")
