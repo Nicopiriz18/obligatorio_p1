@@ -22,6 +22,36 @@ function inicio(){
         contador(e);
       });
 }
+
+function verPrincipal(){
+    ocultarMenos([1,1,0,0,0,0]);
+}
+function verReclamos(){
+    ocultarMenos([0,0,0,1,0,0]);
+}
+function verEstadisticas(){
+    ocultarMenos([0,0,0,0,1,0]);
+    document.getElementById("idContainerBotones").addEventListener("click", function(e){
+        filtroTabla(e);
+    })
+}
+function verAgregar(){
+    const botonNuevaEmpresa = document.getElementById("idBotonEmpresa")
+    ocultarMenos([0,0,0,0,0,1]);
+    botonNuevaEmpresa.addEventListener("click", agregarEmp);
+}
+function nuevoReclamo(){
+    let contador=0;
+    for (const i in sys.empresas){
+        contador++;
+    }
+    if(contador!==0){
+        ocultarMenos([1,0,1,0,0,0]);
+    }else{
+        alert("Debe ingresar empresas primero")
+    }
+    
+}
 function agregarReclamo(){
 	document.getElementById("idSinDatos").style.display="none";
     const formRec = document.getElementById("idNuevoForm");
@@ -40,16 +70,6 @@ function agregarReclamo(){
         objetoEmpresa.cantidad++;
         actualizarEstadisticasNuevoReclamo(reclamo0);
     }
-}
-function actualizarEstadisticasNuevoReclamo(reclamo){
-    const rowAActualizar = document.getElementById("idRow"+reclamo.empresa.nombre);
-    rowAActualizar.children[3].innerText = reclamo.empresa.cantidad;
-    const spanPromedio = document.getElementById("idSpanPromedio");
-    let cantidadTotal = 0;
-    for(let rec of sys.reclamos){
-        cantidadTotal+=rec.contador;
-    }
-    spanPromedio.innerText = cantidadTotal/sys.reclamos.length;
 }
 function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     const divReclamo = document.createElement("div");
@@ -96,13 +116,62 @@ function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     article.insertBefore(divReclamo, article.children[0]);
 }
 
+function actualizarEstadisticasNuevoReclamo(reclamo){
+    //cuando se clickea el boton que incrementa el contador, se actualiza las estadisticas de la misma forma
+    // que cuando se crea un reclamo a diferencia de que se elimina el li que indica que la empresa no tiene reclamos
+    // en caso de ser necesario. 
+    actualizarEstadisticasContador(reclamo);
+    const LiSinReclamo = document.getElementById("idLi"+reclamo.empresa.nombre);
+    if(LiSinReclamo){
+        LiSinReclamo.remove();
+    }
+}
+
 function contador(e){
     if(e.target.tagName === 'BUTTON'){
         const idDelBoton = e.target.id;
         sys.reclamos[idDelBoton - 1].contador++;
+        sys.reclamos[idDelBoton - 1].empresa.cantidad++;
         const spanContador = document.getElementById("idSpanBoton"+idDelBoton);
         spanContador.innerText=sys.reclamos[idDelBoton-1].contador;
+        actualizarEstadisticasContador(sys.reclamos[idDelBoton - 1]);
     }
+}
+function actualizarEstadisticasContador(reclamo){
+    const rowAActualizar = document.getElementById("idRow"+reclamo.empresa.nombre);
+    rowAActualizar.children[3].innerText = reclamo.empresa.cantidad;
+    const spanPromedio = document.getElementById("idSpanPromedio");
+    let cantidadTotal = 0;
+    for(let rec of sys.reclamos){
+        cantidadTotal+=rec.contador;
+    }
+    spanPromedio.innerText = cantidadTotal/sys.reclamos.length;
+    let rubrosMaximaCant = [];
+    let maximaCantidadRubro = 0;
+    for(let rub of ["Viajes", "Bancos", "Muebles", "Autos", "Servicios", "General"]){
+        let cantidadActual = 0;
+        for(let rec of sys.reclamos){
+            if(rec.empresa.rubro === rub){
+                cantidadActual += rec.contador;
+            }
+        }
+        if(cantidadActual > maximaCantidadRubro){
+            maximaCantidadRubro = cantidadActual;
+            rubrosMaximaCant = [rub];
+        } else if(cantidadActual === maximaCantidadRubro){
+            rubrosMaximaCant.push(rub);
+        }
+    }
+    const ulRubrosMax = document.getElementById("idUlRubrosMaximaCantidad");
+    while(ulRubrosMax.firstChild){
+        ulRubrosMax.firstChild.remove();
+    }
+    for(let rubro of rubrosMaximaCant){
+        const liRubro = document.createElement("li");
+        liRubro.innerHTML = rubro + ": cantidad " + maximaCantidadRubro; 
+        ulRubrosMax.appendChild(liRubro);
+    }
+
 }
 const arrayLetras=[];
 function agregarEmp(){
@@ -180,33 +249,9 @@ function filtroTabla(e){
         botonPresionado.classList.add("botonSeleccionado")
     }
 }
-function nuevoReclamo(){
-    let contador=0;
-    for (const i in sys.empresas){
-        contador++;
-    }
-    if(contador!==0){
-        ocultarMenos([1,0,1,0,0,0]);
-    }else{
-        alert("Debe ingresar empresas primero")
-    }
-    
-}
 
-function verReclamos(){
-    ocultarMenos([0,0,0,1,0,0]);
-}
-function verEstadisticas(){
-    ocultarMenos([0,0,0,0,1,0]);
-    document.getElementById("idContainerBotones").addEventListener("click", function(e){
-        filtroTabla(e);
-    })
-}
-function verAgregar(){
-    const botonNuevaEmpresa = document.getElementById("idBotonEmpresa")
-    ocultarMenos([0,0,0,0,0,1]);
-    botonNuevaEmpresa.addEventListener("click", agregarEmp);
-}
+
+
 function ocultarMenos(arr){
     const sec1=document.getElementById("idSection1");
     const art1_1=document.getElementById("idArticle1_1");
@@ -220,6 +265,13 @@ function ocultarMenos(arr){
     sec2.style.display="none";
     sec3.style.display="none";
     sec4.style.display="none";
+    //[a0,a1,a2,a3,a4,a5]
+    //el elemento a0 corresponde a la seccion 1 
+    //el elemento a1 corresponde a la parte de principal
+    //el elemento a2 corresponde a la parte de agregar reclamo
+    //el elemento a3 corresponde a los reclamos ingresados
+    //el elemento a4 corresponde a las estadisticas
+    //el elemento a5 corresponde a la parte de agregar empresa
     for(let i=0;i<arr.length;i++){
         if(arr[i]===1){
             switch(i){
@@ -245,13 +297,7 @@ function ocultarMenos(arr){
         }
     }
 }
-//[a0,a1,a2,a3,a4,a5]
-//el elemento a0 corresponde a la seccion 1 
-//el elemento a1 corresponde a la parte de principal
-//el elemento a2 corresponde a la parte de agregar reclamo
-//el elemento a3 corresponde a los reclamos ingresados
-//el elemento a4 corresponde a las estadisticas
-//el elemento a5 corresponde a la parte de agregar empresa
+
 
 function buscar(){
     const inputBuscar = document.getElementById("idBuscar");
