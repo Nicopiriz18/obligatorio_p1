@@ -28,9 +28,10 @@ function agregarReclamo(){
     if(formRec.reportValidity()){
         const nombreUsuario = document.getElementById("idNombreUsuario").value;
         const empresa = document.getElementById("idEmpresa").value;
+        const objetoEmpresa = sys.buscarEmpresaPorNombre(empresa);
         const titulo = document.getElementById("idReclamo").value;
         const descripcion = document.getElementById("idDescripcion").value;
-        const reclamo0 = new Reclamo(nombreUsuario, empresa, titulo, descripcion);
+        const reclamo0 = new Reclamo(nombreUsuario, objetoEmpresa, titulo, descripcion);
         sys.agregarReclamo(reclamo0);
         const numReclamo = sys.reclamos.indexOf(reclamo0) + 1;
         crearElementoReclamo(nombreUsuario, titulo, empresa, descripcion, numReclamo);
@@ -91,66 +92,6 @@ function contador(e){
 }
 const arrayLetras=[];
 function agregarEmp(){
-    const formEmp = document.getElementById("idFormNuevaEmp");
-    const selectEmpresas=document.getElementById("idEmpresa");
-    const nombreEmpresa = document.getElementById("idNombreEmpresa").value;
-    const direccion = document.getElementById("idDireccion").value;
-    let nombreNoEsta=true;
-    let direccionNoEsta=true;
-        for (const i in sys.empresas) {
-            if(sys.empresas[i].nombre===nombreEmpresa){
-                alert("Empresa ya ingresada")
-                nombreNoEsta=false;
-            }
-        }
-    for (const i in sys.empresas){
-        if(sys.empresas[i].direccion===direccion){
-            alert("Direccion ya ingresada");
-            direccionNoEsta=false;
-        }
-    }
-    if(formEmp.reportValidity() && nombreNoEsta&& direccionNoEsta){
-        
-        const rubro = document.getElementById("idRubro").value;
-        const nuevaEmpresa = new Empresa(nombreEmpresa, direccion, rubro);
-        sys.agregarEmpresa(nuevaEmpresa);
-        const option = document.createElement("option");
-       option.textContent = nombreEmpresa;
-        selectEmpresas.appendChild(option);
-        //selectEmpresas.add(option);
-        formEmp.reset();
-        //el siguiente codigo agrega un boton con la inicial de la empresa ingresada
-        nom=nombreEmpresa.toUpperCase();
-        const letra=nom.charAt(0);
-        const botonAst=document.getElementById("*")
-        if(!(arrayLetras.includes(letra))){
-            arrayLetras.push(letra);
-            arrayLetras.sort();
-            const botonLetra=document.createElement("button");
-            botonLetra.textContent = letra;
-            const divPadre=document.getElementById("idContainerBotones");
-            while (divPadre.firstChild){
-                divPadre.removeChild(divPadre.firstChild);
-            }
-            for (let i=0; i<arrayLetras.length;i++){
-                const letraActual = arrayLetras[i];
-                const boton = document.createElement("button");
-                boton.textContent=letraActual;
-                divPadre.appendChild(boton);
-                boton.addEventListener("click", function() {
-                    filtroTabla(letraActual);
-                  });
-            }
-            divPadre.appendChild(botonAst);
-            botonAst.addEventListener("click", function(){
-               filtroTabla("*");
-            });
-        }
-    }
-}
-
-
-function agregarEmp2(){
     const formEmp = document.getElementById("idFormNuevaEmp");
     if(formEmp.reportValidity()){
         const nombreEmpresa = document.getElementById("idNombreEmpresa").value;
@@ -250,7 +191,7 @@ function verEstadisticas(){
 function verAgregar(){
     const botonNuevaEmpresa = document.getElementById("idBotonEmpresa")
     ocultarMenos([0,0,0,0,0,1]);
-    botonNuevaEmpresa.addEventListener("click", agregarEmp2);
+    botonNuevaEmpresa.addEventListener("click", agregarEmp);
 }
 function ocultarMenos(arr){
     const sec1=document.getElementById("idSection1");
