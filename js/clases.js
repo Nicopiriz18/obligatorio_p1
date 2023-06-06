@@ -20,6 +20,13 @@ class Sistema{
         }
         return resp;
     }
+    buscarEmpresaPorNombre(nombre){
+        for(let emp of this.empresas){
+            if(nombre === emp){
+                return emp;
+            }
+        }
+    }
 }
 class Reclamo{
     constructor(nombreUSuaurio, empresa, titulo, descripcion){
