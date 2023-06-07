@@ -34,7 +34,35 @@ function verEstadisticas(){
     document.getElementById("idContainerBotones").addEventListener("click", function(e){
         filtroTabla(e);
     })
+    document.getElementById("idCreciente").addEventListener("click", function(){
+        sortEmpresas(true)
+    });
+    document.getElementById("idDecreciente").addEventListener("click", function(){
+        sortEmpresas(false)
+    })
 }
+function sortEmpresas(creciente){
+    const tablaBody = document.getElementById("idTablaEstadisticas").children[2];
+    const tRows = tablaBody.getElementsByTagName("tr");
+    const tRowsArray = Array.from(tRows);
+    if(creciente){
+        tRowsArray.sort(function(a, b){
+            //localeCompare nos compara segun el valor de ascii de los caracteres. Si a<b (ASCII) retorna -1 si a>b retorna 1
+            return a.children[0].innerText[0].toUpperCase().localeCompare(b.children[0].innerText[0].toUpperCase());
+        })
+    }else {
+        tRowsArray.sort(function(a, b){
+            return b.children[0].innerText[0].toUpperCase().localeCompare(a.children[0].innerText[0].toUpperCase());
+        })
+    }
+    while(tablaBody.firstChild){
+        tablaBody.firstChild.remove();
+    }
+    for(let row of tRowsArray){
+        tablaBody.appendChild(row);
+    }
+}
+
 function verAgregar(){
     const botonNuevaEmpresa = document.getElementById("idBotonEmpresa")
     ocultarMenos([0,0,0,0,0,1]);
@@ -354,4 +382,12 @@ function actualizarEstadisticasNuevaEmpresa(empresa){
     spanPromedio.innerHTML= cantidadTotal/empresasRegistradas;
     const spanTotalEmpresas = document.getElementById("idSpanTotalEmpresas");
     spanTotalEmpresas.innerText = empresasRegistradas;
+
+    //luego reordenamos las estadisticas segun cual es el filtro que esta checkeado
+    if(document.getElementById("idCreciente").checked){
+        sortEmpresas(true);
+    }else {
+        sortEmpresas(false);
+    }
 }
+
