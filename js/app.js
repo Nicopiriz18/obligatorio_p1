@@ -349,7 +349,7 @@ function buscar(){
     ocultarMenos([0, 0, 0, 1, 0, 0])
 }
 //La siguiente funcion es una a ejecutarse cuandos se agrega una nueva empresa que se encarga de actualizar la parte de estadisticas
-function actualizarEstadisticas(){
+function actualizarEstadisticas(letra){
     const tablaEstadisticas = document.getElementById("idTablaEstadisticas");
     const listaSinReclamos = document.getElementById("idUlSinReclamos");
     const ulRubrosMax = document.getElementById("idUlRubrosMaximaCantidad");
