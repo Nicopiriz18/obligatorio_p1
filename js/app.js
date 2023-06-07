@@ -241,12 +241,14 @@ function filtroTabla(e){
         const letraPresionada=e.target.id;
         const botonPresionado=document.getElementById(letraPresionada);
 		const divBotones=document.getElementById("idContainerBotones");
+        const containerFilas=document.getElementById("idContainerFilas");
         const botones = divBotones.querySelectorAll("button");
         for (const boton of botones) {
             boton.classList.remove("botonSeleccionado");
         }
         console.log("se hizo click en: "+letraPresionada);
-        botonPresionado.classList.add("botonSeleccionado")
+        botonPresionado.classList.add("botonSeleccionado");
+
     }
 }
 
@@ -325,9 +327,7 @@ function actualizarEstadisticasNuevaEmpresa(empresa){
     const primeraLetra = empresa.nombre[0].toUpperCase();
     const tablaEstadisticas = document.getElementById("idTablaEstadisticas");
     const nuevaRow = document.createElement("tr");
-    //le agregamos a la fila entera una clase relativa a la letra con la que empieza para que luego nos sea mas facil ocultar
-    //o mostrar segun los botones
-    nuevaRow.setAttribute("class", "empiezaCon"+primeraLetra);
+    nuevaRow.setAttribute("class", primeraLetra);
     nuevaRow.setAttribute("id", "idRow"+empresa.nombre)
     const tdNombreEmpresa = document.createElement("td");
     const tdDireccionEmpresa = document.createElement("td");
