@@ -36,32 +36,25 @@ function verEstadisticas(){
     filtroTabla(e);
     })
     document.getElementById("idCreciente").addEventListener("click", function(){
-        sortEmpresas(true)
+        radioButtons(true);
     });
     document.getElementById("idDecreciente").addEventListener("click", function(){
-        sortEmpresas(false)
+        radioButtons(false);
     })
 }
-function sortEmpresas(creciente){
-    const tablaBody = document.getElementById("idTablaEstadisticas").children[2];
-    const tRows = tablaBody.getElementsByTagName("tr");
-    const tRowsArray = Array.from(tRows);
+function sortEmpresas(arr, creciente){ 
     if(creciente){
-        tRowsArray.sort(function(a, b){
+        arr.sort(function(a, b){
             //localeCompare nos compara segun el valor de ascii de los caracteres. Si a<b (ASCII) retorna -1 si a>b retorna 1
             return a.children[0].innerText[0].toUpperCase().localeCompare(b.children[0].innerText[0].toUpperCase());
         })
     }else {
-        tRowsArray.sort(function(a, b){
+        arr.sort(function(a, b){
             return b.children[0].innerText[0].toUpperCase().localeCompare(a.children[0].innerText[0].toUpperCase());
         })
     }
-    while(tablaBody.firstChild){
-        tablaBody.firstChild.remove();
-    }
-    for(let row of tRowsArray){
-        tablaBody.appendChild(row);
-    }
+    return arr;
+
 }
 
 function verAgregar(){
@@ -164,42 +157,7 @@ function contador(e){
         spanContador.innerText=sys.reclamos[idDelBoton-1].contador;
     }
 }
-function actualizarEstadisticasContador(reclamo){
-    const rowAActualizar = document.getElementById("idRow"+reclamo.empresa.nombre);
-    rowAActualizar.children[3].innerText = reclamo.empresa.cantidad;
-    const spanPromedio = document.getElementById("idSpanPromedio");
-    let cantidadTotal = 0;
-    for(let rec of sys.reclamos){
-        cantidadTotal+=rec.contador;
-    }
-    spanPromedio.innerText = cantidadTotal/sys.reclamos.length;
-    let rubrosMaximaCant = [];
-    let maximaCantidadRubro = 0;
-    for(let rub of ["Viajes", "Bancos", "Muebles", "Autos", "Servicios", "General"]){
-        let cantidadActual = 0;
-        for(let rec of sys.reclamos){
-            if(rec.empresa.rubro === rub){
-                cantidadActual += rec.contador;
-            }
-        }
-        if(cantidadActual > maximaCantidadRubro){
-            maximaCantidadRubro = cantidadActual;
-            rubrosMaximaCant = [rub];
-        } else if(cantidadActual === maximaCantidadRubro){
-            rubrosMaximaCant.push(rub);
-        }
-    }
-    const ulRubrosMax = document.getElementById("idUlRubrosMaximaCantidad");
-    while(ulRubrosMax.firstChild){
-        ulRubrosMax.firstChild.remove();
-    }
-    for(let rubro of rubrosMaximaCant){
-        const liRubro = document.createElement("li");
-        liRubro.innerHTML = rubro + ": cantidad " + maximaCantidadRubro; 
-        ulRubrosMax.appendChild(liRubro);
-    }
 
-}
 const arrayLetras=[];
 function agregarEmp(){
     const formEmp = document.getElementById("idFormNuevaEmp");
@@ -262,7 +220,6 @@ function agregarEmp(){
     }
 }
 function filtroTabla(e){
-    //esta funcion hará que se oculten las empresas en la tabla excepto las del boton clickedo
     if(e.target.tagName === 'BUTTON'){
         const letraPresionada=e.target.id;
         const botonPresionado=document.getElementById(letraPresionada);
@@ -365,52 +322,13 @@ function actualizarEstadisticas(letra){
         tablaEstadisticas.children[2].firstChild.remove();
     }
     let arrEmpresasSinReclamo = [];
-    //tablaEstadisticas.children[2].innerHTML = "";
+    //luego checkeamos si la empresa tiene 0 reclamos
     for(let empresa of sys.empresas){
-        let nom=empresa.nombre.toUpperCase();
-        if(letra==="*"){
-        const nuevaRow = document.createElement("tr");
-        nuevaRow.setAttribute("id", "idRow"+empresa.nombre)
-        const tdNombreEmpresa = document.createElement("td");
-        const tdDireccionEmpresa = document.createElement("td");
-        const tdRubroEmpresa = document.createElement("td");
-        const tdCantidadEmpresa = document.createElement("td");
-        tdNombreEmpresa.innerText = empresa.nombre;
-        tdDireccionEmpresa.innerText = empresa.direccion;
-        tdRubroEmpresa.innerText = empresa.rubro;
-        tdCantidadEmpresa.innerText = empresa.cantidad;
-        nuevaRow.appendChild(tdNombreEmpresa);
-        nuevaRow.appendChild(tdDireccionEmpresa);
-        nuevaRow.appendChild(tdRubroEmpresa);
-        nuevaRow.appendChild(tdCantidadEmpresa);
-        //accedemos al tbody haciendo children[2] ya que el primer hijo es la caption, segundo thead y tercero el tbody
-        tablaEstadisticas.children[2].appendChild(nuevaRow);
-        }
-        else if(nom.charAt(0)===letra){
-        const nuevaRow = document.createElement("tr");
-        nuevaRow.setAttribute("id", "idRow"+empresa.nombre)
-        const tdNombreEmpresa = document.createElement("td");
-        const tdDireccionEmpresa = document.createElement("td");
-        const tdRubroEmpresa = document.createElement("td");
-        const tdCantidadEmpresa = document.createElement("td");
-        tdNombreEmpresa.innerText = empresa.nombre;
-        tdDireccionEmpresa.innerText = empresa.direccion;
-        tdRubroEmpresa.innerText = empresa.rubro;
-        tdCantidadEmpresa.innerText = empresa.cantidad;
-        nuevaRow.appendChild(tdNombreEmpresa);
-        nuevaRow.appendChild(tdDireccionEmpresa);
-        nuevaRow.appendChild(tdRubroEmpresa);
-        nuevaRow.appendChild(tdCantidadEmpresa);
-        //accedemos al tbody haciendo children[2] ya que el primer hijo es la caption, segundo thead y tercero el tbody
-        tablaEstadisticas.children[2].appendChild(nuevaRow);
-        }
-        //luego checkeamos si la empresa tiene 0 reclamos
         if(empresa.cantidad === 0){
             const nuevoLi = document.createElement("li");
             nuevoLi.innerText = empresa.toString();
             listaSinReclamos.appendChild(nuevoLi);
-        }
-        
+        }  
     }
     const spanPromedio = document.getElementById("idSpanPromedio");
     let cantidadTotal = 0;
@@ -439,15 +357,58 @@ function actualizarEstadisticas(letra){
         liRubro.innerHTML = rubro + ": cantidad " + maximaCantidadRubro; 
         ulRubrosMax.appendChild(liRubro);
     }
-    //luego reordenamos las estadisticas segun cual es el filtro que esta checkeado
-    if(document.getElementById("idCreciente").checked){
-        sortEmpresas(true);
-    }else {
-        sortEmpresas(false);
-    }
+    crearTabla("*");
 
     const spanTotalEmpresas = document.getElementById("idSpanTotalEmpresas");
     spanTotalEmpresas.innerText = sys.empresas.length;
 }
 
+function crearTabla(letra){
+    let filtro = letra;
+    if(letra === "*"){
+        filtro = "";
+    }
+    let filasAAgregar = [];
+    for(let empresa of sys.empresas){
+        if(empresa.nombre.toUpperCase().startsWith(filtro)){
+            const nuevaRow = document.createElement("tr");
+            nuevaRow.setAttribute("id", "idRow"+empresa.nombre)
+            const tdNombreEmpresa = document.createElement("td");
+            const tdDireccionEmpresa = document.createElement("td");
+            const tdRubroEmpresa = document.createElement("td");
+            const tdCantidadEmpresa = document.createElement("td");
+            tdNombreEmpresa.innerText = empresa.nombre;
+            tdDireccionEmpresa.innerText = empresa.direccion;
+            tdRubroEmpresa.innerText = empresa.rubro;
+            tdCantidadEmpresa.innerText = empresa.cantidad;
+            nuevaRow.appendChild(tdNombreEmpresa);
+            nuevaRow.appendChild(tdDireccionEmpresa);
+            nuevaRow.appendChild(tdRubroEmpresa);
+            nuevaRow.appendChild(tdCantidadEmpresa);
+            //accedemos al tbody haciendo children[2] ya que el primer hijo es la caption, segundo thead y tercero el tbody
+            filasAAgregar.push(nuevaRow);
+        }
+    }
+    if(document.getElementById("idCreciente").checked){
+        filasAAgregar = sortEmpresas(filasAAgregar, true);
+    }else {
+        filasAAgregar = sortEmpresas(filasAAgregar, false);
+    }
+    const tablaBody = document.getElementById("idTablaEstadisticas").children[2];
+    for(let row of filasAAgregar){
+        tablaBody.appendChild(row);
+    }
+}
 
+function radioButtons(creciente){
+    const tablaBody = document.getElementById("idTablaEstadisticas").children[2];
+    const tRows = tablaBody.getElementsByTagName("tr");
+    const tRowsArray = Array.from(tRows);
+    const empresasOrdenadas = sortEmpresas(tRowsArray, creciente);
+    while(tablaBody.firstChild){
+        tablaBody.firstChild.remove();
+    }
+    for(let row of empresasOrdenadas){
+        tablaBody.appendChild(row);
+    }
+}
