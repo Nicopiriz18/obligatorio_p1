@@ -40,10 +40,18 @@ function verPrincipal(){
 }
 function verReclamos(){
     ocultarMenos([0,0,0,1,0,0]);
+    if(sys.reclamos.length !== 0){
+        const reclamos = document.getElementsByClassName("containerReclamo");
+        for(let rec of reclamos){
+            rec.style.display = "block";
+        }
+        document.getElementById("idSinDatos").style.display = "none"
+    }
+
 }
 function verEstadisticas(){
     ocultarMenos([0,0,0,0,1,0]);
-    actualizarEstadisticas("*");
+    actualizarEstadisticas();
 }
 function sortEmpresas(arr, creciente){ 
     if(creciente){
@@ -90,7 +98,6 @@ function agregarReclamo(){
         formRec.reset();
         //el siguiente codigo se encarga de sumarle 1 a la cantidad de reclamos para la empresa
         objetoEmpresa.cantidad++;
-        document.getElementById("idSinDatos").style.display="none";
     }
 }
 function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
@@ -220,7 +227,7 @@ function filtroTabla(e){
         }
         console.log("se hizo click en: "+letraPresionada);
         botonPresionado.classList.add("botonSeleccionado");
-        actualizarEstadisticas(letraPresionada);
+        actualizarEstadisticas();
     }
 }
 
@@ -295,7 +302,7 @@ function buscar(){
     ocultarMenos([0, 0, 0, 1, 0, 0])
 }
 //La siguiente funcion es una a ejecutarse cuandos se agrega una nueva empresa que se encarga de actualizar la parte de estadisticas
-function actualizarEstadisticas(letra){
+function actualizarEstadisticas(){
     const tablaEstadisticas = document.getElementById("idTablaEstadisticas");
     const tbody = tablaEstadisticas.querySelector("tbody");
     tbody.innerHTML = "";
@@ -354,7 +361,7 @@ function actualizarEstadisticas(letra){
 
 function crearTabla(){
     let filtro = letraFiltro;
-    if(letra === "*"){
+    if(filtro === "*"){
         filtro = "";
         //Hacemos esto porque cuando se tiene clickeado asterisco queremos que todas las empresas pasen el filtro
         //al hacer startsWith("") con un string vacio todas las empresas cumpliran
