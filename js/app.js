@@ -2,7 +2,6 @@ window.addEventListener("load", inicio);
 const sys = new Sistema();
 let letraFiltro = "*";
 function inicio(){
-    const arrayLetras=[];
     const lupa = document.getElementById("idLupa");
     const botonAgregar = document.getElementById("idBotonReclamo");
     const botonAgregarForm = document.getElementById("idBotonAgregar");
@@ -213,14 +212,13 @@ function filtroTabla(e){
         const letraPresionada=e.target.id;
         const botonPresionado=document.getElementById(letraPresionada);
 		const divBotones=document.getElementById("idContainerBotones");
-        const containerFilas=document.getElementById("idContainerFilas");
         const botones = divBotones.querySelectorAll("button");
         for (const boton of botones) {
             boton.classList.remove("botonSeleccionado");
         }
         console.log("se hizo click en: "+letraPresionada);
         botonPresionado.classList.add("botonSeleccionado");
-        actualizarEstadisticas(letraPresionada);
+        crearTabla(letraPresionada);
     }
 }
 
@@ -295,7 +293,7 @@ function buscar(){
     ocultarMenos([0, 0, 0, 1, 0, 0])
 }
 //La siguiente funcion es una a ejecutarse cuandos se agrega una nueva empresa que se encarga de actualizar la parte de estadisticas
-function actualizarEstadisticas(letra){
+function actualizarEstadisticas(){
     const tablaEstadisticas = document.getElementById("idTablaEstadisticas");
     const tbody = tablaEstadisticas.querySelector("tbody");
     tbody.innerHTML = "";
@@ -306,9 +304,6 @@ function actualizarEstadisticas(letra){
     }
     while(listaSinReclamos.firstChild){
         listaSinReclamos.firstChild.remove();
-    }
-    while(tablaEstadisticas.children[2].firstChild){
-        tablaEstadisticas.children[2].firstChild.remove();
     }
     let arrEmpresasSinReclamo = [];
     //luego checkeamos si la empresa tiene 0 reclamos
