@@ -20,7 +20,18 @@ function inicio(){
     botonAgregarForm.addEventListener("click", agregarReclamo);
     document.getElementById("idSection2").addEventListener("click", function(e) {
         contador(e);
-      });
+    });
+    document.getElementById("idContainerBotones").addEventListener("click", function(e){
+        filtroTabla(e);
+    })
+    document.getElementById("idCreciente").addEventListener("click", function(){
+        radioButtons(true);
+    });
+    document.getElementById("idDecreciente").addEventListener("click", function(){
+        radioButtons(false);
+    })
+    const botonNuevaEmpresa = document.getElementById("idBotonEmpresa");
+    botonNuevaEmpresa.addEventListener("click", agregarEmp);
 }
 
 function verPrincipal(){
@@ -32,15 +43,6 @@ function verReclamos(){
 function verEstadisticas(){
     ocultarMenos([0,0,0,0,1,0]);
     actualizarEstadisticas("*");
-    document.getElementById("idContainerBotones").addEventListener("click", function(e){
-    filtroTabla(e);
-    })
-    document.getElementById("idCreciente").addEventListener("click", function(){
-        radioButtons(true);
-    });
-    document.getElementById("idDecreciente").addEventListener("click", function(){
-        radioButtons(false);
-    })
 }
 function sortEmpresas(arr, creciente){ 
     if(creciente){
@@ -58,9 +60,7 @@ function sortEmpresas(arr, creciente){
 }
 
 function verAgregar(){
-    const botonNuevaEmpresa = document.getElementById("idBotonEmpresa")
     ocultarMenos([0,0,0,0,0,1]);
-    botonNuevaEmpresa.addEventListener("click", agregarEmp);
 }
 function nuevoReclamo(){
     let contador=0;
