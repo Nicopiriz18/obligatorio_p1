@@ -21,7 +21,18 @@ function inicio(){
     botonAgregarForm.addEventListener("click", agregarReclamo);
     document.getElementById("idSection2").addEventListener("click", function(e) {
         contador(e);
-      });
+    });
+    document.getElementById("idContainerBotones").addEventListener("click", function(e){
+        filtroTabla(e);
+    })
+    document.getElementById("idCreciente").addEventListener("click", function(){
+        radioButtons(true);
+    });
+    document.getElementById("idDecreciente").addEventListener("click", function(){
+        radioButtons(false);
+    })
+    const botonNuevaEmpresa = document.getElementById("idBotonEmpresa");
+    botonNuevaEmpresa.addEventListener("click", agregarEmp);
 }
 
 function verPrincipal(){
@@ -32,16 +43,7 @@ function verReclamos(){
 }
 function verEstadisticas(){
     ocultarMenos([0,0,0,0,1,0]);
-    actualizarEstadisticas();
-    document.getElementById("idContainerBotones").addEventListener("click", function(e){
-        filtroTabla(e);
-    })
-    document.getElementById("idCreciente").addEventListener("click", function(){
-        radioButtons(true);
-    });
-    document.getElementById("idDecreciente").addEventListener("click", function(){
-        radioButtons(false);
-    })
+    actualizarEstadisticas("*");
 }
 function sortEmpresas(arr, creciente){ 
     if(creciente){
@@ -59,9 +61,7 @@ function sortEmpresas(arr, creciente){
 }
 
 function verAgregar(){
-    const botonNuevaEmpresa = document.getElementById("idBotonEmpresa")
     ocultarMenos([0,0,0,0,0,1]);
-    botonNuevaEmpresa.addEventListener("click", agregarEmp);
 }
 function nuevoReclamo(){
     let contador=0;
@@ -220,7 +220,7 @@ function filtroTabla(e){
         }
         console.log("se hizo click en: "+letraPresionada);
         botonPresionado.classList.add("botonSeleccionado");
-
+        actualizarEstadisticas(letraPresionada);
     }
 }
 
@@ -295,8 +295,10 @@ function buscar(){
     ocultarMenos([0, 0, 0, 1, 0, 0])
 }
 //La siguiente funcion es una a ejecutarse cuandos se agrega una nueva empresa que se encarga de actualizar la parte de estadisticas
-function actualizarEstadisticas(){
+function actualizarEstadisticas(letra){
     const tablaEstadisticas = document.getElementById("idTablaEstadisticas");
+    const tbody = tablaEstadisticas.querySelector("tbody");
+    tbody.innerHTML = "";
     const listaSinReclamos = document.getElementById("idUlSinReclamos");
     const ulRubrosMax = document.getElementById("idUlRubrosMaximaCantidad");
     while(ulRubrosMax.firstChild){
@@ -309,7 +311,6 @@ function actualizarEstadisticas(){
         tablaEstadisticas.children[2].firstChild.remove();
     }
     let arrEmpresasSinReclamo = [];
-
     //luego checkeamos si la empresa tiene 0 reclamos
     for(let empresa of sys.empresas){
         if(empresa.cantidad === 0){
@@ -349,8 +350,6 @@ function actualizarEstadisticas(){
 
     const spanTotalEmpresas = document.getElementById("idSpanTotalEmpresas");
     spanTotalEmpresas.innerText = sys.empresas.length;
-    
-    
 }
 
 function crearTabla(){
