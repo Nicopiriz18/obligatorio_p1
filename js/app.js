@@ -1,5 +1,6 @@
 window.addEventListener("load", inicio);
 const sys = new Sistema();
+let letraFiltro = "*";
 function inicio(){
     const arrayLetras=[];
     const lupa = document.getElementById("idLupa");
@@ -75,7 +76,6 @@ function nuevoReclamo(){
     
 }
 function agregarReclamo(){
-	document.getElementById("idSinDatos").style.display="none";
     const formRec = document.getElementById("idNuevoForm");
     if(formRec.reportValidity()){
         const nombreUsuario = document.getElementById("idNombreUsuario").value;
@@ -90,6 +90,7 @@ function agregarReclamo(){
         formRec.reset();
         //el siguiente codigo se encarga de sumarle 1 a la cantidad de reclamos para la empresa
         objetoEmpresa.cantidad++;
+        document.getElementById("idSinDatos").style.display="none";
     }
 }
 function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
@@ -137,17 +138,6 @@ function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     article.insertBefore(divReclamo, article.children[0]);
 }
 
-function actualizarEstadisticasNuevoReclamo(reclamo){
-    //cuando se clickea el boton que incrementa el contador, se actualiza las estadisticas de la misma forma
-    // que cuando se crea un reclamo a diferencia de que se elimina el li que indica que la empresa no tiene reclamos
-    // en caso de ser necesario. 
-    actualizarEstadisticasContador(reclamo);
-    const LiSinReclamo = document.getElementById("idLi"+reclamo.empresa.nombre);
-    if(LiSinReclamo){
-        LiSinReclamo.remove();
-    }
-}
-
 function contador(e){
     if(e.target.tagName === 'BUTTON'){
         const idDelBoton = e.target.id;
@@ -157,7 +147,6 @@ function contador(e){
         spanContador.innerText=sys.reclamos[idDelBoton-1].contador;
     }
 }
-
 const arrayLetras=[];
 function agregarEmp(){
     const formEmp = document.getElementById("idFormNuevaEmp");
@@ -300,9 +289,9 @@ function buscar(){
         }
     }
     
-    // if(divsAMantener.length === 0){
-        
-    // }
+    if(divsAMantener.length === 0){
+        document.getElementById("idSinDatos").style.display="block";
+    }
     ocultarMenos([0, 0, 0, 1, 0, 0])
 }
 //La siguiente funcion es una a ejecutarse cuandos se agrega una nueva empresa que se encarga de actualizar la parte de estadisticas
@@ -321,7 +310,7 @@ function actualizarEstadisticas(){
     }
     let arrEmpresasSinReclamo = [];
 
-        //luego checkeamos si la empresa tiene 0 reclamos
+    //luego checkeamos si la empresa tiene 0 reclamos
     for(let empresa of sys.empresas){
         if(empresa.cantidad === 0){
             const nuevoLi = document.createElement("li");
@@ -356,7 +345,7 @@ function actualizarEstadisticas(){
         liRubro.innerHTML = rubro + ": cantidad " + maximaCantidadRubro; 
         ulRubrosMax.appendChild(liRubro);
     }
-    crearTabla("*");
+    crearTabla();
 
     const spanTotalEmpresas = document.getElementById("idSpanTotalEmpresas");
     spanTotalEmpresas.innerText = sys.empresas.length;
@@ -364,10 +353,12 @@ function actualizarEstadisticas(){
     
 }
 
-function crearTabla(letra){
-    let filtro = letra;
+function crearTabla(){
+    let filtro = letraFiltro;
     if(letra === "*"){
         filtro = "";
+        //Hacemos esto porque cuando se tiene clickeado asterisco queremos que todas las empresas pasen el filtro
+        //al hacer startsWith("") con un string vacio todas las empresas cumpliran
     }
     let filasAAgregar = [];
     for(let empresa of sys.empresas){
@@ -402,9 +393,11 @@ function crearTabla(letra){
 }
 
 function radioButtons(creciente){
+    //creciente es un argumento booleano que indica si se quiere que se ordene de manera creciente o decreciente
     const tablaBody = document.getElementById("idTablaEstadisticas").children[2];
     const tRows = tablaBody.getElementsByTagName("tr");
     const tRowsArray = Array.from(tRows);
+    //se ordenan las filas con la funcion sort empresas para luego hacer append al html
     const empresasOrdenadas = sortEmpresas(tRowsArray, creciente);
     while(tablaBody.firstChild){
         tablaBody.firstChild.remove();
