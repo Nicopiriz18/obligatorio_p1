@@ -31,9 +31,9 @@ function verReclamos(){
 }
 function verEstadisticas(){
     ocultarMenos([0,0,0,0,1,0]);
-    actualizarEstadisticas();
+    actualizarEstadisticas("*");
     document.getElementById("idContainerBotones").addEventListener("click", function(e){
-        filtroTabla(e);
+    filtroTabla(e);
     })
     document.getElementById("idCreciente").addEventListener("click", function(){
         sortEmpresas(true)
@@ -274,7 +274,7 @@ function filtroTabla(e){
         }
         console.log("se hizo click en: "+letraPresionada);
         botonPresionado.classList.add("botonSeleccionado");
-
+        actualizarEstadisticas(letraPresionada);
     }
 }
 
@@ -351,6 +351,8 @@ function buscar(){
 //La siguiente funcion es una a ejecutarse cuandos se agrega una nueva empresa que se encarga de actualizar la parte de estadisticas
 function actualizarEstadisticas(letra){
     const tablaEstadisticas = document.getElementById("idTablaEstadisticas");
+    const tbody = tablaEstadisticas.querySelector("tbody");
+    tbody.innerHTML = "";
     const listaSinReclamos = document.getElementById("idUlSinReclamos");
     const ulRubrosMax = document.getElementById("idUlRubrosMaximaCantidad");
     while(ulRubrosMax.firstChild){
@@ -363,7 +365,10 @@ function actualizarEstadisticas(letra){
         tablaEstadisticas.children[2].firstChild.remove();
     }
     let arrEmpresasSinReclamo = [];
+    //tablaEstadisticas.children[2].innerHTML = "";
     for(let empresa of sys.empresas){
+        let nom=empresa.nombre.toUpperCase();
+        if(letra==="*"){
         const nuevaRow = document.createElement("tr");
         nuevaRow.setAttribute("id", "idRow"+empresa.nombre)
         const tdNombreEmpresa = document.createElement("td");
@@ -380,7 +385,25 @@ function actualizarEstadisticas(letra){
         nuevaRow.appendChild(tdCantidadEmpresa);
         //accedemos al tbody haciendo children[2] ya que el primer hijo es la caption, segundo thead y tercero el tbody
         tablaEstadisticas.children[2].appendChild(nuevaRow);
-        
+        }
+        else if(nom.charAt(0)===letra){
+        const nuevaRow = document.createElement("tr");
+        nuevaRow.setAttribute("id", "idRow"+empresa.nombre)
+        const tdNombreEmpresa = document.createElement("td");
+        const tdDireccionEmpresa = document.createElement("td");
+        const tdRubroEmpresa = document.createElement("td");
+        const tdCantidadEmpresa = document.createElement("td");
+        tdNombreEmpresa.innerText = empresa.nombre;
+        tdDireccionEmpresa.innerText = empresa.direccion;
+        tdRubroEmpresa.innerText = empresa.rubro;
+        tdCantidadEmpresa.innerText = empresa.cantidad;
+        nuevaRow.appendChild(tdNombreEmpresa);
+        nuevaRow.appendChild(tdDireccionEmpresa);
+        nuevaRow.appendChild(tdRubroEmpresa);
+        nuevaRow.appendChild(tdCantidadEmpresa);
+        //accedemos al tbody haciendo children[2] ya que el primer hijo es la caption, segundo thead y tercero el tbody
+        tablaEstadisticas.children[2].appendChild(nuevaRow);
+        }
         //luego checkeamos si la empresa tiene 0 reclamos
         if(empresa.cantidad === 0){
             const nuevoLi = document.createElement("li");
@@ -425,7 +448,6 @@ function actualizarEstadisticas(letra){
 
     const spanTotalEmpresas = document.getElementById("idSpanTotalEmpresas");
     spanTotalEmpresas.innerText = sys.empresas.length;
-    
 }
 
 
