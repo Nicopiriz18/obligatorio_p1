@@ -210,6 +210,7 @@ function agregarEmp(){
 function filtroTabla(e){
     if(e.target.tagName === 'BUTTON'){
         const letraPresionada=e.target.id;
+        letraFiltro=letraPresionada;
         const botonPresionado=document.getElementById(letraPresionada);
 		const divBotones=document.getElementById("idContainerBotones");
         const botones = divBotones.querySelectorAll("button");
@@ -349,7 +350,9 @@ function actualizarEstadisticas(){
 
 function crearTabla(){
     let filtro = letraFiltro;
-    if(letra === "*"){
+    const tablaBody = document.getElementById("idTablaEstadisticas").children[2];
+    tablaBody.remove();
+    if(filtro === "*"){
         filtro = "";
         //Hacemos esto porque cuando se tiene clickeado asterisco queremos que todas las empresas pasen el filtro
         //al hacer startsWith("") con un string vacio todas las empresas cumpliran
@@ -380,12 +383,11 @@ function crearTabla(){
     }else {
         filasAAgregar = sortEmpresas(filasAAgregar, false);
     }
-    const tablaBody = document.getElementById("idTablaEstadisticas").children[2];
     for(let row of filasAAgregar){
         tablaBody.appendChild(row);
     }
 }
-
+const tbody = tablaEstadisticas.querySelector("tbody");
 function radioButtons(creciente){
     //creciente es un argumento booleano que indica si se quiere que se ordene de manera creciente o decreciente
     const tablaBody = document.getElementById("idTablaEstadisticas").children[2];
