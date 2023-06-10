@@ -350,8 +350,6 @@ function actualizarEstadisticas(){
 
 function crearTabla(){
     let filtro = letraFiltro;
-    const tablaBody = document.getElementById("idTablaEstadisticas").children[2];
-    tablaBody.remove();
     if(filtro === "*"){
         filtro = "";
         //Hacemos esto porque cuando se tiene clickeado asterisco queremos que todas las empresas pasen el filtro
@@ -383,11 +381,11 @@ function crearTabla(){
     }else {
         filasAAgregar = sortEmpresas(filasAAgregar, false);
     }
+    const tablaBody = document.getElementById("idTablaEstadisticas").children[2];
     for(let row of filasAAgregar){
         tablaBody.appendChild(row);
     }
 }
-const tbody = tablaEstadisticas.querySelector("tbody");
 function radioButtons(creciente){
     //creciente es un argumento booleano que indica si se quiere que se ordene de manera creciente o decreciente
     const tablaBody = document.getElementById("idTablaEstadisticas").children[2];
