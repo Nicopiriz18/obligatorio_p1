@@ -56,9 +56,7 @@ function sortEmpresas(arr, creciente){
         })
     }
     return arr;
-
 }
-
 function verAgregar(){
     ocultarMenos([0,0,0,0,0,1]);
 }
@@ -136,7 +134,6 @@ function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     //El siguiente codigo permite insertar el reclamo al principio del article
     article.insertBefore(divReclamo, article.children[0]);
 }
-
 function contador(e){
     if(e.target.tagName === 'BUTTON'){
         const idDelBoton = e.target.id;
@@ -217,14 +214,10 @@ function filtroTabla(e){
         for (const boton of botones) {
             boton.classList.remove("botonSeleccionado");
         }
-        console.log("se hizo click en: "+letraPresionada);
         botonPresionado.classList.add("botonSeleccionado");
-        crearTabla(letraPresionada);
+        crearTabla();
     }
 }
-
-
-
 function ocultarMenos(arr){
     const sec1=document.getElementById("idSection1");
     const art1_1=document.getElementById("idArticle1_1");
@@ -270,8 +263,6 @@ function ocultarMenos(arr){
         }
     }
 }
-
-
 function buscar(){
     const inputBuscar = document.getElementById("idBuscar");
     const keyword = inputBuscar.value;
@@ -343,12 +334,15 @@ function actualizarEstadisticas(){
         ulRubrosMax.appendChild(liRubro);
     }
     crearTabla();
-
     const spanTotalEmpresas = document.getElementById("idSpanTotalEmpresas");
     spanTotalEmpresas.innerText = sys.empresas.length;
 }
 
 function crearTabla(){
+    const filasAEliminar=document.querySelectorAll(".fila");
+    for(const fila of filasAEliminar){
+        fila.style.display="none";
+    }
     let filtro = letraFiltro;
     if(filtro === "*"){
         filtro = "";
@@ -359,7 +353,8 @@ function crearTabla(){
     for(let empresa of sys.empresas){
         if(empresa.nombre.toUpperCase().startsWith(filtro)){
             const nuevaRow = document.createElement("tr");
-            nuevaRow.setAttribute("id", "idRow"+empresa.nombre)
+            nuevaRow.setAttribute("id", "idRow"+empresa.nombre);
+            nuevaRow.setAttribute("class", "fila");
             const tdNombreEmpresa = document.createElement("td");
             const tdDireccionEmpresa = document.createElement("td");
             const tdRubroEmpresa = document.createElement("td");
