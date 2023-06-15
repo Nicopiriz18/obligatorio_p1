@@ -161,7 +161,7 @@ function agregarEmp(){
                 direccionNoEsta=false;
             }
         }
-        if(nombreNoEsta&& direccionNoEsta){
+        if(nombreNoEsta&&direccionNoEsta){
             const rubro = document.getElementById("idRubro").value;
             const nuevaEmpresa = new Empresa(nombreEmpresa, direccion, rubro);
             sys.agregarEmpresa(nuevaEmpresa);
