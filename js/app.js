@@ -1,6 +1,7 @@
 window.addEventListener("load", inicio);
 const sys = new Sistema();
 let letraFiltro = "*";
+let mostrarCreciente=true;
 function inicio(){
     const lupa = document.getElementById("idLupa");
     const botonAgregar = document.getElementById("idBotonReclamo");
@@ -18,22 +19,25 @@ function inicio(){
     botonAgregar.addEventListener("click", nuevoReclamo)
     lupa.addEventListener("click", buscar);
     botonAgregarForm.addEventListener("click", agregarReclamo);
-    document.getElementById("idSection2").addEventListener("click", function(e) {
+    const botonCreciente=document.getElementById("idCreciente");
+    const botonDecreciente=document.getElementById("idDecreciente");
+   document.getElementById("idSection2").addEventListener("click", function(e) {
         contador(e);
     });
     document.getElementById("idContainerBotones").addEventListener("click", function(e){
         filtroTabla(e);
     })
-    document.getElementById("idCreciente").addEventListener("click", function(){
-        radioButtons(true);
-    });
-    document.getElementById("idDecreciente").addEventListener("click", function(){
-        radioButtons(false);
-    })
     const botonNuevaEmpresa = document.getElementById("idBotonEmpresa");
     botonNuevaEmpresa.addEventListener("click", agregarEmp);
+    botonCreciente.addEventListener("click", function(){
+        mostrarCreciente=true;
+        crearTabla(true);
+    });
+    botonDecreciente.addEventListener("click", function(){
+        mostrarCreciente=false;
+        crearTabla(false);
+    });
 }
-
 function verPrincipal(){
     ocultarMenos([1,1,0,0,0,0]);
 }
@@ -41,21 +45,18 @@ function verReclamos(){
     ocultarMenos([0,0,0,1,0,0]);
 }
 function verEstadisticas(){
-    ocultarMenos([0,0,0,0,1,0]);
-    actualizarEstadisticas("*");
-}
-function sortEmpresas(arr, creciente){ 
-    if(creciente){
-        arr.sort(function(a, b){
-            //localeCompare nos compara segun el valor de ascii de los caracteres. Si a<b (ASCII) retorna -1 si a>b retorna 1
-            return a.children[0].innerText[0].toUpperCase().localeCompare(b.children[0].innerText[0].toUpperCase());
-        })
-    }else {
-        arr.sort(function(a, b){
-            return b.children[0].innerText[0].toUpperCase().localeCompare(a.children[0].innerText[0].toUpperCase());
-        })
+    //ocultarMenos([0,0,0,0,1,0]);
+    //actualizarEstadisticas("*");
+    let contador=0;
+    for (const i in sys.empresas){
+        contador++;
     }
-    return arr;
+    if(contador===0){
+        alert("No hay estadisticas para mostrar, debe ingresar empresas primero");
+    }else{
+        ocultarMenos([0,0,0,0,1,0]);
+        actualizarEstadisticas("*");
+    }
 }
 function verAgregar(){
     ocultarMenos([0,0,0,0,0,1]);
@@ -65,12 +66,11 @@ function nuevoReclamo(){
     for (const i in sys.empresas){
         contador++;
     }
-    if(contador!==0){
-        ocultarMenos([1,0,1,0,0,0]);
+    if(contador===0){
+        alert("Debe ingresar empresas primero");
     }else{
-        alert("Debe ingresar empresas primero")
+        ocultarMenos([1,0,1,0,0,0]);
     }
-    
 }
 function agregarReclamo(){
     const formRec = document.getElementById("idNuevoForm");
@@ -143,7 +143,7 @@ function contador(e){
         spanContador.innerText=sys.reclamos[idDelBoton-1].contador;
     }
 }
-const arrayLetras=[];
+
 function agregarEmp(){
     const formEmp = document.getElementById("idFormNuevaEmp");
     if(formEmp.reportValidity()){
@@ -204,6 +204,7 @@ function agregarEmp(){
 
     }
 }
+const arrayLetras=[];
 function filtroTabla(e){
     if(e.target.tagName === 'BUTTON'){
         const letraPresionada=e.target.id;
@@ -214,8 +215,13 @@ function filtroTabla(e){
         for (const boton of botones) {
             boton.classList.remove("botonSeleccionado");
         }
+        if(letraPresionada==="*"){
+            document.getElementById("idCaptionTabla").textContent="Empresas: todas"
+        }else{
+            document.getElementById("idCaptionTabla").textContent="Empresas que empiezan con "+letraPresionada;
+        }
         botonPresionado.classList.add("botonSeleccionado");
-        crearTabla();
+        crearTabla(mostrarCreciente);
     }
 }
 function ocultarMenos(arr){
@@ -311,7 +317,11 @@ function actualizarEstadisticas(){
     for(let rec of sys.reclamos){
         cantidadTotal+=rec.contador;
     }
-    spanPromedio.innerText = Math.trunc(cantidadTotal/sys.reclamos.length);
+    if(isNaN(Math.trunc(cantidadTotal/sys.reclamos.length))){
+        spanPromedio.innerText=0
+    }else{
+       spanPromedio.innerText = Math.trunc(cantidadTotal/sys.reclamos.length); 
+    }
     let rubrosMaximaCant = [];
     let maximaCantidadRubro = 0;
     for(let rub of ["Viajes", "Bancos", "Muebles", "Autos", "Servicios", "General"]){
@@ -333,24 +343,23 @@ function actualizarEstadisticas(){
         liRubro.innerHTML = rubro + ": cantidad " + maximaCantidadRubro; 
         ulRubrosMax.appendChild(liRubro);
     }
-    crearTabla();
+    crearTabla(mostrarCreciente);
     const spanTotalEmpresas = document.getElementById("idSpanTotalEmpresas");
     spanTotalEmpresas.innerText = sys.empresas.length;
 }
-
-function crearTabla(){
+function crearTabla(creciente){
     const filasAEliminar=document.querySelectorAll(".fila");
     for(const fila of filasAEliminar){
         fila.style.display="none";
     }
     let filtro = letraFiltro;
     if(filtro === "*"){
-        filtro = "";
+        filtro ="";
         //Hacemos esto porque cuando se tiene clickeado asterisco queremos que todas las empresas pasen el filtro
         //al hacer startsWith("") con un string vacio todas las empresas cumpliran
     }
     let filasAAgregar = [];
-    for(let empresa of sys.empresas){
+    for(let empresa of sys.darEmpresasOrdenadas(creciente)){
         if(empresa.nombre.toUpperCase().startsWith(filtro)){
             const nuevaRow = document.createElement("tr");
             nuevaRow.setAttribute("id", "idRow"+empresa.nombre);
@@ -371,27 +380,8 @@ function crearTabla(){
             filasAAgregar.push(nuevaRow);
         }
     }
-    if(document.getElementById("idCreciente").checked){
-        filasAAgregar = sortEmpresas(filasAAgregar, true);
-    }else {
-        filasAAgregar = sortEmpresas(filasAAgregar, false);
-    }
     const tablaBody = document.getElementById("idTablaEstadisticas").children[2];
-    for(let row of filasAAgregar){
-        tablaBody.appendChild(row);
-    }
-}
-function radioButtons(creciente){
-    //creciente es un argumento booleano que indica si se quiere que se ordene de manera creciente o decreciente
-    const tablaBody = document.getElementById("idTablaEstadisticas").children[2];
-    const tRows = tablaBody.getElementsByTagName("tr");
-    const tRowsArray = Array.from(tRows);
-    //se ordenan las filas con la funcion sort empresas para luego hacer append al html
-    const empresasOrdenadas = sortEmpresas(tRowsArray, creciente);
-    while(tablaBody.firstChild){
-        tablaBody.firstChild.remove();
-    }
-    for(let row of empresasOrdenadas){
-        tablaBody.appendChild(row);
+    for (let row of filasAAgregar) {
+      tablaBody.appendChild(row);
     }
 }

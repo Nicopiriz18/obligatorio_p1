@@ -6,6 +6,24 @@ class Sistema{
     agregarEmpresa(emp){
         this.empresas.push(emp);
     }
+    darEmpresasOrdenadas(creciente){
+        if(creciente){
+            this.empresas.sort(
+                function(a,b){
+                    return a.nombre.localeCompare(b.nombre);
+                }
+            )
+            return this.empresas;
+        }
+        else{
+            this.empresas.sort(
+                function(a,b){
+                    return b.nombre.localeCompare(a.nombre);
+                }
+            )
+            return this.empresas;
+        }
+    }
     agregarReclamo(rec){
         this.reclamos.push(rec);
     }
