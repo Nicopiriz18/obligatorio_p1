@@ -21,7 +21,7 @@ function inicio(){
     botonAgregarForm.addEventListener("click", agregarReclamo);
     const botonCreciente=document.getElementById("idCreciente");
     const botonDecreciente=document.getElementById("idDecreciente");
-   document.getElementById("idSection2").addEventListener("click", function(e) {
+    document.getElementById("idSection2").addEventListener("click", function(e) {
         contador(e);
     });
     document.getElementById("idContainerBotones").addEventListener("click", function(e){
@@ -43,15 +43,16 @@ function verPrincipal(){
 }
 function verReclamos(){
     ocultarMenos([0,0,0,1,0,0]);
+    if(sys.reclamos.length>0){
+        document.getElementById("idSinDatos").style.display="none";
+        const reclamos = document.getElementsByClassName("containerReclamo");
+        for(let rec of reclamos){
+            rec.style.display="block";
+        }
+    }
 }
 function verEstadisticas(){
-    //ocultarMenos([0,0,0,0,1,0]);
-    //actualizarEstadisticas("*");
-    let contador=0;
-    for (const i in sys.empresas){
-        contador++;
-    }
-    if(contador===0){
+    if(sys.empresas.length===0){
         alert("No hay estadisticas para mostrar, debe ingresar empresas primero");
     }else{
         ocultarMenos([0,0,0,0,1,0]);
@@ -62,11 +63,7 @@ function verAgregar(){
     ocultarMenos([0,0,0,0,0,1]);
 }
 function nuevoReclamo(){
-    let contador=0;
-    for (const i in sys.empresas){
-        contador++;
-    }
-    if(contador===0){
+    if(sys.empresas.length===0){
         alert("Debe ingresar empresas primero");
     }else{
         ocultarMenos([1,0,1,0,0,0]);
@@ -87,7 +84,6 @@ function agregarReclamo(){
         formRec.reset();
         //el siguiente codigo se encarga de sumarle 1 a la cantidad de reclamos para la empresa
         objetoEmpresa.cantidad++;
-        document.getElementById("idSinDatos").style.display="none";
     }
 }
 function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
@@ -283,8 +279,7 @@ function buscar(){
         }else{
             rec.style.display="none";
         }
-    }
-    
+    } 
     if(divsAMantener.length === 0){
         document.getElementById("idSinDatos").style.display="block";
     }
@@ -348,9 +343,9 @@ function actualizarEstadisticas(){
     spanTotalEmpresas.innerText = sys.empresas.length;
 }
 function crearTabla(creciente){
-    const filasAEliminar=document.querySelectorAll(".fila");
-    for(const fila of filasAEliminar){
-        fila.style.display="none";
+    const tablaEstadisticas = document.getElementById("idTablaEstadisticas");
+    while(tablaEstadisticas.children[2].firstChild){
+        tablaEstadisticas.children[2].firstChild.remove();
     }
     let filtro = letraFiltro;
     if(filtro === "*"){
@@ -363,7 +358,6 @@ function crearTabla(creciente){
         if(empresa.nombre.toUpperCase().startsWith(filtro)){
             const nuevaRow = document.createElement("tr");
             nuevaRow.setAttribute("id", "idRow"+empresa.nombre);
-            nuevaRow.setAttribute("class", "fila");
             const tdNombreEmpresa = document.createElement("td");
             const tdDireccionEmpresa = document.createElement("td");
             const tdRubroEmpresa = document.createElement("td");
@@ -380,7 +374,7 @@ function crearTabla(creciente){
             filasAAgregar.push(nuevaRow);
         }
     }
-    const tablaBody = document.getElementById("idTablaEstadisticas").children[2];
+    const tablaBody = tablaEstadisticas.children[2];
     for (let row of filasAAgregar) {
       tablaBody.appendChild(row);
     }
