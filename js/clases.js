@@ -29,9 +29,10 @@ class Sistema{
     }
     buscarReclamos(keyword){
         let resp = [];
+        const keywordMayus = keyword.toUpperCase();
         for(let i=0; i<this.reclamos.length; i++){
-            const valorABuscarCoincidencias = this.reclamos[i].valoresReclamo();
-            if(valorABuscarCoincidencias.includes(keyword.toUpperCase())){
+            const reclamoActual = this.reclamos[i];
+            if(reclamoActual.nombreUsuario.toUpperCase().includes(keywordMayus) || reclamoActual.empresa.nombre.toUpperCase().includes(keywordMayus) || reclamoActual.titulo.toUpperCase().includes(keywordMayus) || reclamoActual.descripcion.toUpperCase().includes(keywordMayus)){
                 resp.push((i+1));
                 //se pushea i+1 porque en los reclamos el primer reclamo tiene el nro 1 en lugar de 0
             }
@@ -47,16 +48,13 @@ class Sistema{
     }
 }
 class Reclamo{
-    constructor(nombreUSuaurio, empresa, titulo, descripcion){
-        this.nombreUsuario = nombreUSuaurio;
+    constructor(nombreUsuario, empresa, titulo, descripcion){
+        this.nombreUsuario = nombreUsuario;
         this.empresa = empresa;
         this.titulo = titulo;
         this.descripcion = descripcion;
         //el contador se incializa en 1 cuando se hace un reclamo
         this.contador = 1;
-    }
-    valoresReclamo(){
-        return (this.nombreUsuario + ": " + this.titulo + "  " + this.empresa  + this.descripcion).toUpperCase();
     }
 }
 class Empresa{

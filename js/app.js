@@ -282,6 +282,8 @@ function buscar(){
     } 
     if(divsAMantener.length === 0){
         document.getElementById("idSinDatos").style.display="block";
+    }else{
+        document.getElementById("idSinDatos").style.display="none";
     }
     ocultarMenos([0, 0, 0, 1, 0, 0])
 }
