@@ -139,7 +139,7 @@ function contador(e){
         spanContador.innerText=sys.reclamos[idDelBoton-1].contador;
     }
 }
-
+const arrayLetras=[];
 function agregarEmp(){
     const formEmp = document.getElementById("idFormNuevaEmp");
     if(formEmp.reportValidity()){
@@ -148,13 +148,8 @@ function agregarEmp(){
         let nombreNoEsta=true;
         let direccionNoEsta=true;
         for(let i =0; i<sys.empresas.length; i++){
-            if(sys.empresas[i].nombre===nombreEmpresa){
+            if(sys.empresas[i].nombre.toUpperCase()===nombreEmpresa.toUpperCase()){
                 nombreNoEsta=false;
-            }
-        }
-        for(let i =0; i<sys.empresas.length; i++){
-            if(sys.empresas[i].direccion===direccion){
-                direccionNoEsta=false;
             }
         }
         if(nombreNoEsta&&direccionNoEsta){
@@ -200,7 +195,6 @@ function agregarEmp(){
 
     }
 }
-const arrayLetras=[];
 function filtroTabla(e){
     if(e.target.tagName === 'BUTTON'){
         const letraPresionada=e.target.id;
@@ -292,13 +286,13 @@ function actualizarEstadisticas(){
     tbody.innerHTML = "";
     const listaSinReclamos = document.getElementById("idUlSinReclamos");
     const ulRubrosMax = document.getElementById("idUlRubrosMaximaCantidad");
+    const divSinDatos=document.getElementById("divSinDatos");
     while(ulRubrosMax.firstChild){
         ulRubrosMax.firstChild.remove();
     }
     while(listaSinReclamos.firstChild){
         listaSinReclamos.firstChild.remove();
     }
-    let arrEmpresasSinReclamo = [];
     //luego checkeamos si la empresa tiene 0 reclamos
     for(let empresa of sys.empresas){
         if(empresa.cantidad === 0){
@@ -313,7 +307,7 @@ function actualizarEstadisticas(){
         cantidadTotal+=rec.contador;
     }
     if(isNaN(Math.trunc(cantidadTotal/sys.reclamos.length))){
-        spanPromedio.innerText=0
+        spanPromedio.innerText="Sin datos"
     }else{
        spanPromedio.innerText = Math.trunc(cantidadTotal/sys.reclamos.length); 
     }
@@ -333,10 +327,13 @@ function actualizarEstadisticas(){
             rubrosMaximaCant.push(rub);
         }
     }
-    for(let rubro of rubrosMaximaCant){
-        const liRubro = document.createElement("li");
-        liRubro.innerHTML = rubro + ": cantidad " + maximaCantidadRubro; 
-        ulRubrosMax.appendChild(liRubro);
+    if(maximaCantidadRubro!==0){
+        document.getElementById("idSinDatosRubro").remove();
+        for(let rubro of rubrosMaximaCant){
+            const liRubro = document.createElement("li");
+            liRubro.innerHTML = rubro + ": cantidad " + maximaCantidadRubro; 
+            ulRubrosMax.appendChild(liRubro);
+        }
     }
     crearTabla(mostrarCreciente);
     const spanTotalEmpresas = document.getElementById("idSpanTotalEmpresas");
