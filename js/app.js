@@ -43,13 +43,13 @@ function verPrincipal(){
 }
 function verReclamos(){
     ocultarMenos([0,0,0,1,0,0]);
-    if(sys.reclamos.length>0){
-        document.getElementById("idSinDatos").style.display="none";
-        const reclamos = document.getElementsByClassName("containerReclamo");
-        for(let rec of reclamos){
-            rec.style.display="block";
-        }
-    }
+    // if(sys.reclamos.length>0){
+    //     document.getElementById("idSinDatos").style.display="none";
+    //     const reclamos = document.getElementsByClassName("containerReclamo");
+    //     for(let rec of reclamos){
+    //         rec.style.display="block";
+    //     }
+    // }
 }
 function verEstadisticas(){
     if(sys.empresas.length===0){
@@ -127,8 +127,8 @@ function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     contenido.appendChild(buttonTambien);
     contenido.appendChild(labelContador);
     divReclamo.appendChild(contenido);
-    //El siguiente codigo permite insertar el reclamo al principio del article
-    article.insertBefore(divReclamo, article.children[0]);
+    //El siguiente codigo permite insertar el reclamo al principio del article pero luego del heading
+    article.insertBefore(divReclamo, article.children[1]);
 }
 function contador(e){
     if(e.target.tagName === 'BUTTON'){
@@ -296,12 +296,20 @@ function actualizarEstadisticas(){
         listaSinReclamos.firstChild.remove();
     }
     //luego checkeamos si la empresa tiene 0 reclamos
+    //creamos una variable en 0 para luego mostrar que no hay datos en caso de que no hayan empresas sin reclamos
+    let numeroSinReclamo = 0;
     for(let empresa of sys.empresas){
         if(empresa.cantidad === 0){
             const nuevoLi = document.createElement("li");
             nuevoLi.innerText = empresa.toString();
             listaSinReclamos.appendChild(nuevoLi);
+            numeroSinReclamo++;
         }  
+    }
+    if(numeroSinReclamo>0){
+        document.getElementById("idSinDatosSinReclamos").style.display="none";
+    }else{
+        document.getElementById("idSinDatosSinReclamos").style.display="block";
     }
     const spanPromedio = document.getElementById("idSpanPromedio");
     let cantidadTotal = 0;
@@ -330,7 +338,7 @@ function actualizarEstadisticas(){
         }
     }
     if(maximaCantidadRubro!==0){
-        document.getElementById("idSinDatosRubro").remove();
+        document.getElementById("idSinDatosRubro").style.display="none";
         for(let rubro of rubrosMaximaCant){
             const liRubro = document.createElement("li");
             liRubro.innerHTML = rubro + ": cantidad " + maximaCantidadRubro; 
