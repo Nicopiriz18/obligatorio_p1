@@ -1,166 +1,170 @@
 <!--Material elaborado por: Nicolás Píriz(310896) y Manuel Stapff(303636)-->
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <title>Tus reclamos</title>
-    <link rel="stylesheet" href="css/estilos.css">
-    <script src="js/clases.js"></script>
-    <script src="js/app.js"></script>
-  </head>
 
-  <body>
-    <nav>
-      <ul id="idUlNav">
-        <li>
-          <img src="img/logo.jpg" alt="logo de tus reclamos" id="idLogo">
-        </li>
-        <li>
-          <a href="#idSection1" id="idLinkS1" class="linkNav">Principal</a>
-        </li>
-        <li>
-          <a href="#idSection2" id="idLinkS2" class="linkNav">Ver Reclamos</a>
-        </li>
-        <li>
-          <a href="#idSection3" id="idLinkS3" class="linkNav">Estadisticas</a>
-        </li>
-        <li>
-          <a href="#idSection4" id="idLinkS4" class="linkNav"
-            >Agregar Empresa</a
-          >
-        </li>
-        <li>
-          <input id="idBuscar" type="text" maxlength="30">
-          <button><img src="img/lupa.jpg" alt="Buscar" id="idLupa"></button>
-        </li>
-      </ul>
-    </nav>
-    <section id="idSection1">
-      <h2>Sitio para la gestión de reclamos</h2>
-      <article id="idArticle1_1">
-        <h3>
-          Este sitio permite ingresar reclamos o quejas y realizar diversas
-          consultas.
-        </h3>
-        <p>
-          Sitio desarrollado en el curso de Programación 1 - 1er semestre 2023 -
-          Universidad ORT Uruguay por:
-        </p>
-        <p class="nombre" id="idPManuel">
-          <a target="_blank" href="img/manuel.jpg"><img src="img/manuel.jpg" alt="foto de Manuel" id="idImgManuel" class="imgEtudiantes"></a>
-          Manuel Stapff - 303636
-        </p>
-        <p class="nombre" id="idPNcolas">
-          <a target="_blank" href="img/nicolas.jpg"><img src="img/nicolas.jpg" alt="foto de Nicolás" id="idImgNicolas" class="imgEtudiantes"></a>
-          Nicolás Píriz - 310896
-        </p>
-        <button id="idBotonReclamo">Agrega tu reclamo aquí</button>
-      </article>
-      <article id="idArticle1_2">
-        <h2>Agregar Reclamo</h2>
-        <form id="idNuevoForm">
-          <label for="idNombreUsuario" id="idLabelUsuario" class="labelFormReclamo">Nombre</label>
-          <input id="idNombreUsuario" type="text" name="nombre" maxlength="30" placeholder="Tu nombre..." required>
-          <br>
-          <label for="idEmpresa" id="idLabelEmpresa" class="labelFormReclamo">Empresa</label>
-          <select name="empresa" id="idEmpresa"></select>
-          <br>
-          <label for="idReclamo" id="idLabelReclamo" class="labelFormReclamo">Reclamo</label>
-          <input type="text" maxlength="30" name="reclamo" id="idReclamo" placeholder="El título es..." required>
-          <br>
-          <textarea rows="5" cols="45" name="reclamo" id="idDescripcion" placeholder="Y tu reclamo es..." required></textarea>
-          <br>
-          <input type="button" value="Agregar" id="idBotonAgregar">
-          <button id="idBotonVolver">Volver</button>
-        </form>
-      </article>
-    </section>
-    <section id="idSection2">
-      <article id="idArticle2_1">
-        <h2>Reclamos ingresados (los mas recientes primero)</h2>
-        <p id="idSinDatos">Sin datos</p>
-      </article>
-    </section>
-    <section id="idSection3">
-      <h2>Estadísticas</h2>
-      <article id="idArticle3_1">
-        <h3>Empresas seleccionadas</h3>
-        <div id="idEstadisticas">
-          <div id="idContainerBotones">
-            <button class="botonSeleccionado" id="*">*</button>
-          </div>
-          <br>
-          <input type="radio" id="idCreciente" name="Filtro" checked>
-          <label for="idCreciente">Orden nombre creciente</label>
-          <input type="radio" id="idDecreciente" name="Filtro">
-          <label for="idDecreciente">Orden nombre decreciente</label>
-          <br>
-          <table id="idTablaEstadisticas">
-            <caption id="idCaptionTabla">
-              Empresas: todas
-            </caption>
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Dirección</th>
-                <th>Rubro</th>
-                <th>Cantidad</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr id="idContainerFilas">
-                <td>TodoViajes S.A.</td>
-                <td>Av. Italia 51515</td>
-                <td>Viajes</td>
-                <td>4</td>
-              </tr>
-            </tbody>
-          </table>
+<head>
+  <meta charset="UTF-8">
+  <title>Tus reclamos</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="js/clases.js"></script>
+  <script src="js/funciones.js"></script>
+</head>
+
+<body>
+  <nav>
+    <ul id="idUlNav">
+      <li>
+        <img src="img/logo.jpg" alt="logo de tus reclamos" id="idLogo">
+      </li>
+      <li>
+        <a href="#idSection1" id="idLinkS1" class="linkNav">Principal</a>
+      </li>
+      <li>
+        <a href="#idSection2" id="idLinkS2" class="linkNav">Ver Reclamos</a>
+      </li>
+      <li>
+        <a href="#idSection3" id="idLinkS3" class="linkNav">Estadisticas</a>
+      </li>
+      <li>
+        <a href="#idSection4" id="idLinkS4" class="linkNav">Agregar Empresa</a>
+      </li>
+      <li>
+        <input id="idBuscar" type="text" maxlength="30">
+        <button><img src="img/lupa.jpg" alt="Buscar" id="idLupa"></button>
+      </li>
+    </ul>
+  </nav>
+  <section id="idSection1">
+    <h2>Sitio para la gestión de reclamos</h2>
+    <article id="idArticle1_1">
+      <h3>
+        Este sitio permite ingresar reclamos o quejas y realizar diversas
+        consultas.
+      </h3>
+      <p>
+        Sitio desarrollado en el curso de Programación 1 - 1er semestre 2023 -
+        Universidad ORT Uruguay por:
+      </p>
+      <p class="nombre" id="idPManuel">
+        <a target="_blank" href="img/manuel.jpg"><img src="img/manuel.jpg" alt="foto de Manuel" id="idImgManuel"
+            class="imgEtudiantes"></a>
+        Manuel Stapff - 303636
+      </p>
+      <p class="nombre" id="idPNcolas">
+        <a target="_blank" href="img/nicolas.jpg"><img src="img/nicolas.jpg" alt="foto de Nicolás" id="idImgNicolas"
+            class="imgEtudiantes"></a>
+        Nicolás Píriz - 310896
+      </p>
+      <button id="idBotonReclamo">Agrega tu reclamo aquí</button>
+    </article>
+    <article id="idArticle1_2">
+      <h2>Agregar Reclamo</h2>
+      <form id="idNuevoForm">
+        <label for="idNombreUsuario" id="idLabelUsuario" class="labelFormReclamo">Nombre</label>
+        <input id="idNombreUsuario" type="text" name="nombre" maxlength="30" placeholder="Tu nombre..." required>
+        <br>
+        <label for="idEmpresa" id="idLabelEmpresa" class="labelFormReclamo">Empresa</label>
+        <select name="empresa" id="idEmpresa"></select>
+        <br>
+        <label for="idReclamo" id="idLabelReclamo" class="labelFormReclamo">Reclamo</label>
+        <input type="text" maxlength="30" name="reclamo" id="idReclamo" placeholder="El título es..." required>
+        <br>
+        <textarea rows="5" cols="45" name="reclamo" id="idDescripcion" placeholder="Y tu reclamo es..."
+          required></textarea>
+        <br>
+        <input type="button" value="Agregar" id="idBotonAgregar">
+        <button id="idBotonVolver">Volver</button>
+      </form>
+    </article>
+  </section>
+  <section id="idSection2">
+    <article id="idArticle2_1">
+      <h2>Reclamos ingresados (los mas recientes primero)</h2>
+      <p id="idSinDatos">Sin datos</p>
+    </article>
+  </section>
+  <section id="idSection3">
+    <h2>Estadísticas</h2>
+    <article id="idArticle3_1">
+      <h3>Empresas seleccionadas</h3>
+      <div id="idEstadisticas">
+        <div id="idContainerBotones">
+          <button class="botonSeleccionado" id="*">*</button>
         </div>
-      </article>
-      <article id="idArticle3_2">
-        <h3>Información General</h3>
-        <p>
-          El promedio de cantidades considerando todos los reclamos de todas las
-          empresas es: <span id="idSpanPromedio">0</span>
-        </p>
-        <p>
-          Total de empresas registradas: <span id="idSpanTotalEmpresas">0</span>
-        </p>
-        <h3>Empresas sin Reclamos:</h3>
-        <p id="idSinDatosSinReclamos">Sin datos</p>
-        <ul id="idUlSinReclamos"></ul>
-        <h3>Rubros con máxima cantidad de reclamos</h3>
-        <p id="idSinDatosRubro">Sin datos</p>
-        <ul id="idUlRubrosMaximaCantidad">
-          <li>Viajes: cantidad 4</li>
-        </ul>
-      </article>
-    </section>
-    <section id="idSection4">
-      <h2>Agregar Empresa</h2>
-      <article id="idArticle4_1">
-        <h3>Datos:</h3>
-        <form id="idFormNuevaEmp">
-          <label for="idNombreEmpresa" id="idLabelNombreEmpresa" class="labelFormEmpresa">Nombre</label>
-          <input type="text" maxlength="30" name="nombre" id="idNombreEmpresa" required>
-          <br>
-          <label for="idDireccion" id="idLabelDireccion" class="labelFormEmpresa">Dirección</label>
-          <input type="text" maxlength="30" name="direccion" id="idDireccion" required>
-          <br>
-          <label for="idRubro" id="idLabelRubro" class="labelFormEmpresa">Rubro</label>
-          <select name="rubro" id="idRubro">
-            <option value="Viajes" selected>Viajes</option>
-            <option value="Bancos">Bancos</option>
-            <option value="Muebles">Muebles</option>
-            <option value="Autos">Autos</option>
-            <option value="Servicios">Servicios</option>
-            <option value="General">General</option>
-          </select>
-          <br>
-          <input type="button" value="Agregar" id="idBotonEmpresa">
-        </form>
-      </article>
-    </section>
-  </body>
+        <br>
+        <input type="radio" id="idCreciente" name="Filtro" checked>
+        <label for="idCreciente">Orden nombre creciente</label>
+        <input type="radio" id="idDecreciente" name="Filtro">
+        <label for="idDecreciente">Orden nombre decreciente</label>
+        <br>
+        <table id="idTablaEstadisticas">
+          <caption id="idCaptionTabla">
+            Empresas: todas
+          </caption>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Dirección</th>
+              <th>Rubro</th>
+              <th>Cantidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="idContainerFilas">
+              <td>TodoViajes S.A.</td>
+              <td>Av. Italia 51515</td>
+              <td>Viajes</td>
+              <td>4</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+    <article id="idArticle3_2">
+      <h3>Información General</h3>
+      <p>
+        El promedio de cantidades considerando todos los reclamos de todas las
+        empresas es: <span id="idSpanPromedio">0</span>
+      </p>
+      <p>
+        Total de empresas registradas: <span id="idSpanTotalEmpresas">0</span>
+      </p>
+      <h3>Empresas sin Reclamos:</h3>
+      <p id="idSinDatosSinReclamos">Sin datos</p>
+      <ul id="idUlSinReclamos">
+      </ul>
+      <h3>Rubros con máxima cantidad de reclamos</h3>
+      <p id="idSinDatosRubro">Sin datos</p>
+      <ul id="idUlRubrosMaximaCantidad">
+        <li>Viajes: cantidad 4</li>
+      </ul>
+    </article>
+  </section>
+  <section id="idSection4">
+    <h2>Agregar Empresa</h2>
+    <article id="idArticle4_1">
+      <h3>Datos:</h3>
+      <form id="idFormNuevaEmp">
+        <label for="idNombreEmpresa" id="idLabelNombreEmpresa" class="labelFormEmpresa">Nombre</label>
+        <input type="text" maxlength="30" name="nombre" id="idNombreEmpresa" required>
+        <br>
+        <label for="idDireccion" id="idLabelDireccion" class="labelFormEmpresa">Dirección</label>
+        <input type="text" maxlength="30" name="direccion" id="idDireccion" required>
+        <br>
+        <label for="idRubro" id="idLabelRubro" class="labelFormEmpresa">Rubro</label>
+        <select name="rubro" id="idRubro">
+          <option value="Viajes" selected>Viajes</option>
+          <option value="Bancos">Bancos</option>
+          <option value="Muebles">Muebles</option>
+          <option value="Autos">Autos</option>
+          <option value="Servicios">Servicios</option>
+          <option value="General">General</option>
+        </select>
+        <br>
+        <input type="button" value="Agregar" id="idBotonEmpresa">
+      </form>
+    </article>
+  </section>
+</body>
+
 </html>
