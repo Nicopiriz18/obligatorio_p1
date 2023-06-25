@@ -131,7 +131,7 @@ function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     article.insertBefore(divReclamo, article.children[1]);
 }
 function contador(e){
-    if(e.target.tagName === 'BUTTON'){
+    if(e.target.tagName === "BUTTON"){
         const idDelBoton = e.target.id;
         sys.reclamos[idDelBoton - 1].contador++;
         sys.reclamos[idDelBoton - 1].empresa.cantidad++;
@@ -196,7 +196,7 @@ function agregarEmp(){
     }
 }
 function filtroTabla(e){
-    if(e.target.tagName === 'BUTTON'){
+    if(e.target.tagName === "BUTTON"){
         const letraPresionada=e.target.id;
         letraFiltro=letraPresionada;
         const botonPresionado=document.getElementById(letraPresionada);
