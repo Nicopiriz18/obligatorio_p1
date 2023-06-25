@@ -2,17 +2,18 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <title>Tus reclamos</title>
-    <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="stylesheet" href="css/estilos.css">
     <script src="js/clases.js"></script>
     <script src="js/app.js"></script>
   </head>
+
   <body>
     <nav>
       <ul id="idUlNav">
         <li>
-          <img src="img/logo.jpg" alt="logo de tus reclamos" id="idLogo" />
+          <img src="img/logo.jpg" alt="logo de tus reclamos" id="idLogo">
         </li>
         <li>
           <a href="#idSection1" id="idLinkS1" class="linkNav">Principal</a>
@@ -29,8 +30,8 @@
           >
         </li>
         <li>
-          <input id="idBuscar" type="text" maxlength="30" />
-          <button><img src="img/lupa.jpg" alt="Buscar" id="idLupa" /></button>
+          <input id="idBuscar" type="text" maxlength="30">
+          <button><img src="img/lupa.jpg" alt="Buscar" id="idLupa"></button>
         </li>
       </ul>
     </nav>
@@ -52,7 +53,7 @@
               alt="foto de Manuel"
               id="idImgManuel"
               class="imgEtudiantes"
-          /></a>
+          ></a>
           Manuel Stapff - 303636
         </p>
         <p class="nombre" id="idPNcolas">
@@ -62,7 +63,7 @@
               alt="foto de Nicolás"
               id="idImgNicolas"
               class="imgEtudiantes"
-          /></a>
+          ></a>
           Nicolás Píriz - 310896
         </p>
         <button id="idBotonReclamo">Agrega tu reclamo aquí</button>
@@ -83,13 +84,13 @@
             maxlength="30"
             placeholder="Tu nombre..."
             required
-          />
-          <br />
+          >
+          <br>
           <label for="idEmpresa" id="idLabelEmpresa" class="labelFormReclamo"
             >Empresa</label
           >
           <select name="empresa" id="idEmpresa"></select>
-          <br />
+          <br>
           <label for="idReclamo" id="idLabelReclamo" class="labelFormReclamo"
             >Reclamo</label
           >
@@ -100,8 +101,8 @@
             id="idReclamo"
             placeholder="El título es..."
             required
-          />
-          <br />
+          >
+          <br>
           <textarea
             rows="5"
             cols="45"
@@ -110,16 +111,17 @@
             placeholder="Y tu reclamo es..."
             required
           ></textarea>
-          <br />
-          <input type="button" value="Agregar" id="idBotonAgregar" />
+          <br>
+          <input type="button" value="Agregar" id="idBotonAgregar">
           <button id="idBotonVolver">Volver</button>
         </form>
       </article>
     </section>
     <section id="idSection2">
-      <h2>Reclamos ingresados (los mas recientes primero)</h2>
-      <p id="idSinDatos">Sin datos</p>
-      <article id="idArticle2_1"></article>
+      <article id="idArticle2_1">
+        <h2>Reclamos ingresados (los mas recientes primero)</h2>
+        <p id="idSinDatos">Sin datos</p>
+      </article>
     </section>
     <section id="idSection3">
       <h2>Estadísticas</h2>
@@ -129,12 +131,12 @@
           <div id="idContainerBotones">
             <button class="botonSeleccionado" id="*">*</button>
           </div>
-          <br />
+          <br>
           <input type="radio" id="idCreciente" name="Filtro" checked />
           <label for="idCreciente">Orden nombre creciente</label>
           <input type="radio" id="idDecreciente" name="Filtro" />
           <label for="idDecreciente">Orden nombre decreciente</label>
-          <br />
+          <br>
           <table id="idTablaEstadisticas">
             <caption id="idCaptionTabla">
               Empresas: todas
@@ -168,9 +170,8 @@
           Total de empresas registradas: <span id="idSpanTotalEmpresas">0</span>
         </p>
         <h3>Empresas sin Reclamos:</h3>
-        <ul id="idUlSinReclamos">
-          <li>Alfa (18 de Julio 12345) Rubro: Muebles</li>
-        </ul>
+        <p id="idSinDatosSinReclamos">Sin datos</p>
+        <ul id="idUlSinReclamos"></ul>
         <h3>Rubros con máxima cantidad de reclamos</h3>
         <p id="idSinDatosRubro">Sin datos</p>
         <ul id="idUlRubrosMaximaCantidad">
@@ -195,8 +196,8 @@
             name="nombre"
             id="idNombreEmpresa"
             required
-          />
-          <br />
+          >
+          <br>
           <label
             for="idDireccion"
             id="idLabelDireccion"
@@ -209,8 +210,8 @@
             name="direccion"
             id="idDireccion"
             required
-          />
-          <br />
+          >
+          <br>
           <label for="idRubro" id="idLabelRubro" class="labelFormEmpresa"
             >Rubro</label
           >
@@ -222,7 +223,7 @@
             <option value="Servicios">Servicios</option>
             <option value="General">General</option>
           </select>
-          <br />
+          <br>
           <input type="button" value="Agregar" id="idBotonEmpresa" />
         </form>
       </article>
