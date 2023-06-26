@@ -124,13 +124,13 @@ function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     divReclamo.appendChild(contenido);
     //El siguiente codigo permite insertar el reclamo al principio de la section pero luego del heading
     section.insertBefore(divReclamo, section.children[1]);
-    //El siguiente codigo se encarga de ocultar el <p> de sin datos en caso de que el reclamo agregado sea el primero
-    if(sys.reclamos.length===1){
-        document.getElementById("idSinDatos").style.display = "none"
-    }
     //luego checkeamos si el reclamo creado cabe en el ultimo filtro de busqueda o no, en caso de que no entre, lo ocultamos
+    //la variable ultimo filtro se inicializa como un string vacio por lo que si no ha filtrado nunca, pasaran el filtro de abajo
     if(!nombre.toUpperCase().includes(ultimoFiltro) && !titulo.toUpperCase().includes(ultimoFiltro) && !empresa.toUpperCase().includes(ultimoFiltro) && !descripcion.toUpperCase().includes(ultimoFiltro)){
         divReclamo.style.display="none";
+    }else{
+        //de lo contrario, si cae ocultamos el p de sin datos (en caso de que no se haya ocultado previamente)
+        document.getElementById("idSinDatos").style.display = "none";
     }
 }
 function contador(e){
