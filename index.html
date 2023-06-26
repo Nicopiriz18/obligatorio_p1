@@ -61,13 +61,15 @@
       <h2>Agregar Reclamo</h2>
       <form id="idNuevoForm">
         <label for="idNombreUsuario" id="idLabelUsuario" class="labelFormReclamo">Nombre</label>
-        <input id="idNombreUsuario" type="text" name="nombre" maxlength="30" placeholder="Tu nombre..." required>
+        <input id="idNombreUsuario" type="text" name="nombre" maxlength="30" placeholder="Tu nombre..." required
+          class="inputClass">
         <br>
         <label for="idEmpresa" id="idLabelEmpresa" class="labelFormReclamo">Empresa</label>
-        <select name="empresa" id="idEmpresa"></select>
+        <select name="empresa" id="idEmpresa" class="inputClass"></select>
         <br>
         <label for="idReclamo" id="idLabelReclamo" class="labelFormReclamo">Reclamo</label>
-        <input type="text" maxlength="30" name="reclamo" id="idReclamo" placeholder="El título es..." required>
+        <input type="text" maxlength="30" name="reclamo" id="idReclamo" placeholder="El título es..." required
+          class="inputClass">
         <br>
         <textarea rows="5" cols="45" name="reclamo" id="idDescripcion" placeholder="Y tu reclamo es..."
           required></textarea>
@@ -146,13 +148,13 @@
       <h3>Datos:</h3>
       <form id="idFormNuevaEmp">
         <label for="idNombreEmpresa" id="idLabelNombreEmpresa" class="labelFormEmpresa">Nombre</label>
-        <input type="text" maxlength="30" name="nombre" id="idNombreEmpresa" required>
+        <input type="text" maxlength="30" name="nombre" id="idNombreEmpresa" required class="inputClass">
         <br>
         <label for="idDireccion" id="idLabelDireccion" class="labelFormEmpresa">Dirección</label>
-        <input type="text" maxlength="30" name="direccion" id="idDireccion" required>
+        <input type="text" maxlength="30" name="direccion" id="idDireccion" required class="inputClass">
         <br>
         <label for="idRubro" id="idLabelRubro" class="labelFormEmpresa">Rubro</label>
-        <select name="rubro" id="idRubro">
+        <select name="rubro" id="idRubro" class="inputClass">
           <option value="Viajes" selected>Viajes</option>
           <option value="Bancos">Bancos</option>
           <option value="Muebles">Muebles</option>

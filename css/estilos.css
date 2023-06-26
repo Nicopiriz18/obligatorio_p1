@@ -101,9 +101,6 @@ El margin es de 79px ya que los labels tienen un width de 75px y se le suma 4px 
 	display: inline-block;
 }
 
-#idEmpresa {
-	width: 183px;
-}
 #idBotonEmpresa {
 	margin-left: 79px;
 }
@@ -138,6 +135,7 @@ section{
 #idArticle1_2{
 	display:none;
 }
-#idRubro{
-	width: 183px;
+.inputClass{
+	width: 180px;
+	padding: 1px 2px;
 }

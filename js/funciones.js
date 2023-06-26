@@ -129,9 +129,7 @@ function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
         document.getElementById("idSinDatos").style.display = "none"
     }
     //luego checkeamos si el reclamo creado cabe en el ultimo filtro de busqueda o no, en caso de que no entre, lo ocultamos
-    if(nombre.toUpperCase().includes(ultimoFiltro) || titulo.toUpperCase().includes(ultimoFiltro) || empresa.toUpperCase().includes(ultimoFiltro) || descripcion.toUpperCase().includes(ultimoFiltro)){
-        divReclamo.style.display="block";
-    }else{
+    if(!nombre.toUpperCase().includes(ultimoFiltro) && !titulo.toUpperCase().includes(ultimoFiltro) && !empresa.toUpperCase().includes(ultimoFiltro) && !descripcion.toUpperCase().includes(ultimoFiltro)){
         divReclamo.style.display="none";
     }
 }
