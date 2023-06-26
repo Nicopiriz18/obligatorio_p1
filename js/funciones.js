@@ -2,6 +2,7 @@ window.addEventListener("load", inicio);
 const sys = new Sistema();
 let letraFiltro = "*";
 let mostrarCreciente=true;
+let ultimoFiltro = "";
 function inicio(){
     const lupa = document.getElementById("idLupa");
     const botonAgregar = document.getElementById("idBotonReclamo");
@@ -92,7 +93,7 @@ function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     const buttonTambien = document.createElement("button");
     const labelContador = document.createElement("label");
     const spanLabelContador = document.createElement("span");
-    const article= document.getElementById("idArticle2_1");
+    const section = document.getElementById("idSection2");
     divReclamo.setAttribute("class", "containerReclamo");
     divReclamo.setAttribute("id", "idDivReclamoNumero"+numero)
     contenido.setAttribute("class", "reclamo");
@@ -120,11 +121,17 @@ function crearElementoReclamo(nombre, titulo, empresa, descripcion, numero){
     contenido.appendChild(buttonTambien);
     contenido.appendChild(labelContador);
     divReclamo.appendChild(contenido);
-    //El siguiente codigo permite insertar el reclamo al principio del article pero luego del heading
-    article.insertBefore(divReclamo, article.children[1]);
+    //El siguiente codigo permite insertar el reclamo al principio de la section pero luego del heading
+    section.insertBefore(divReclamo, section.children[1]);
     //El siguiente codigo se encarga de ocultar el <p> de sin datos en caso de que el reclamo agregado sea el primero
     if(sys.reclamos.length===1){
         document.getElementById("idSinDatos").style.display = "none"
+    }
+    //luego checkeamos si el reclamo creado cabe en el ultimo filtro de busqueda o no, en caso de que no entre, lo ocultamos
+    if(nombre.toUpperCase().includes(ultimoFiltro) || titulo.toUpperCase().includes(ultimoFiltro) || empresa.toUpperCase().includes(ultimoFiltro) || descripcion.toUpperCase().includes(ultimoFiltro)){
+        divReclamo.style.display="block";
+    }else{
+        divReclamo.style.display="none";
     }
 }
 function contador(e){
@@ -276,6 +283,8 @@ function buscar(){
     }else{
         document.getElementById("idSinDatos").style.display="none";
     }
+    //Asignamos el ultimo filtro al filtro de busqueda
+    ultimoFiltro = keyword.toUpperCase();
     ocultarMenos([0, 0, 0, 1, 0, 0])
 }
 //La siguiente funcion es una a ejecutarse cuandos se agrega una nueva empresa que se encarga de actualizar la parte de estadisticas
