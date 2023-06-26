@@ -1,3 +1,4 @@
+//Material elaborado por: Nicolás Píriz(310896) y Manuel Stapff(303636)
 class Sistema{
     constructor(){
         this.empresas = [];
